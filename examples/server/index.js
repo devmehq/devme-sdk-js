@@ -26,3 +26,20 @@ apiInstance
   .then((error) => {
     console.error('error message from body', error?.message);
   });
+
+async function main() {
+  try {
+    const result = await apiInstance.v1ConvertCurrency({
+      amount: 10,
+      from: 'USD',
+      to: 'EUR',
+    });
+    console.log(result);
+  } catch (error) {
+    console.error('error', error instanceof Error ? error.message : error);
+  }
+}
+
+main().then(() => {
+  console.log('main done');
+});
