@@ -6,7 +6,7 @@ yarn test
 yarn build
 git add .
 git commit -am "chose: update release" || true
-npm version patch
+npm version $version --message "chose: update release" || true
 git push || true
 git push --tags || true
 cp package.json README.md LICENSE.md CHANGELOG.md yarn.lock ./dist/
