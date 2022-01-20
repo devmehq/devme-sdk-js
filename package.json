@@ -1,6 +1,6 @@
 {
   "name": "@devmehq/sdk-js",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "private": false,
   "description": "DEV.ME SDK for JavaScript & TypeScript for Server & Browser, Compatible with Node.js & React.js & Vue.js & Angular.js",
   "keywords": [],
@@ -17,7 +17,8 @@
     "lint": "eslint lib test",
     "lint-fix": "yarn lint -- --fix",
     "prepare": "yarn husky install",
-    "prettier": "prettier --write \"src/**/*.{ts,json}\" \"test/**/*.{ts,json}\""
+    "prettier": "prettier --write \"src/**/*.{ts,json}\" \"test/**/*.{ts,json}\"",
+    "test": "echo test"
   },
   "lint-staged": {
     "src/**/*.{ts,json}": "prettier --write",
