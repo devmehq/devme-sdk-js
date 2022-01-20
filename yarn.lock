@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@devmehq/sdk-js@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@devmehq/sdk-js/-/sdk-js-0.0.2.tgz#388dd6aa6aede87aa63c9d54172a8a8821f40d1a"
+  integrity sha512-ah8j9g74pjgfmWgr5ZwZSURtHdN4r+etkq4xg5FEaU83JRKH51O4p3k3BvEcmm0nP1C9vD9Vf+rkTRA9UTS/WQ==
+
 "@types/minimatch@^3.0.3":
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.5.tgz#1001cc5e6a3704b83c236027e77f2f58ea010f40"

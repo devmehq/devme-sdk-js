@@ -10,8 +10,8 @@
   },
   "license": "MIT",
   "author": "DEV.ME <support@dev.me> (https://dev.me)",
-  "main": "./dist/index.js",
-  "typings": "./dist/index.d.ts",
+  "main": "./index.js",
+  "typings": "./index.d.ts",
   "scripts": {
     "build": "rm -rf dist && tsc -p .",
     "lint": "eslint lib test",
