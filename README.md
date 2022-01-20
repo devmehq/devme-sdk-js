@@ -77,6 +77,10 @@ const result = await ipApi.v1GetIpDetails({ ip: '52.45.23.11' });
 yarn test
 ```
 
+## Need Help?
+If you need help please drop us a message, we would be glad to help @ [Contact us](http://dev.me/contact-us)
+
+
 ## Contributing
 Please feel free to open an issue or create a pull request and fix bugs or add features, All contributions are welcome. Thank you!
 
