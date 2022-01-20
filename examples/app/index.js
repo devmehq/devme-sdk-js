@@ -1,10 +1,10 @@
 require('isomorphic-fetch');
 const { CurrencyApi, Configuration } = require('@devmehq/sdk-js');
 const config = new Configuration({ apiKey: 'demo-key' });
-const apiInstance = new CurrencyApi(config);
+const currencyApi = new CurrencyApi(config);
 
 // promises without async/await
-apiInstance
+currencyApi
   .v1ConvertCurrency({ amount: 10, from: 'USD', to: 'EUR' })
   .then((result) => {
     console.log(result);
@@ -13,7 +13,7 @@ apiInstance
     console.error('error', error instanceof Error ? error.message : error);
   });
 
-apiInstance
+currencyApi
   .v1ListCurrencies({ code: ['USD'] })
   .then((result) => {
     console.log(result);
@@ -29,7 +29,7 @@ apiInstance
 
 async function main() {
   try {
-    const result = await apiInstance.v1ConvertCurrency({
+    const result = await currencyApi.v1ConvertCurrency({
       amount: 10,
       from: 'USD',
       to: 'EUR',

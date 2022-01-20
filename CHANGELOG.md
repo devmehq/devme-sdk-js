@@ -1,7 +1,8 @@
 # Change Log
 
-## v1.0.0
+## v1.1.0
 - Initial stable release
-
-## v0.0.1
-- Initial stable release
+- Adding tests
+- Adding documentation
+- Adding examples
+- Adding examples to README.md
