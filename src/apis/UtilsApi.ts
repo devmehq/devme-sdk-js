@@ -17,7 +17,7 @@ export class UtilsApi extends runtime.BaseAPI {
   /**
    * Get current user details with api key
    */
-  async v1WhoAmIRaw(initOverrides?: RequestInit): Promise<runtime.ApiResponse<WhoAmIOut>> {
+  private async v1WhoAmIRaw(initOverrides?: RequestInit): Promise<runtime.ApiResponse<WhoAmIOut>> {
     const queryParameters: any = {};
 
     const headerParameters: runtime.HTTPHeaders = {};

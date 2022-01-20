@@ -21,7 +21,7 @@ export class PhoneApi extends runtime.BaseAPI {
   /**
    * Get phone validation details
    */
-  async v1GetPhoneDetailsRaw(
+  private async v1GetPhoneDetailsRaw(
     requestParameters: V1GetPhoneDetailsRequest,
     initOverrides?: RequestInit,
   ): Promise<runtime.ApiResponse<GetPhoneDetailsOut>> {

@@ -23,7 +23,7 @@ export class EmailApi extends runtime.BaseAPI {
   /**
    * Get email validation details
    */
-  async v1GetEmailDetailsRaw(
+  private async v1GetEmailDetailsRaw(
     requestParameters: V1GetEmailDetailsRequest,
     initOverrides?: RequestInit,
   ): Promise<runtime.ApiResponse<GetEmailDetailsOut>> {

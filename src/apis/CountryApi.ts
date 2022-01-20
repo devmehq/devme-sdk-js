@@ -34,7 +34,7 @@ export class CountryApi extends runtime.BaseAPI {
   /**
    * Get country facts and information
    */
-  async v1GetCountryDetailsRaw(
+  private async v1GetCountryDetailsRaw(
     requestParameters: V1GetCountryDetailsRequest,
     initOverrides?: RequestInit,
   ): Promise<runtime.ApiResponse<GetCountryDetailsOut>> {
@@ -100,7 +100,7 @@ export class CountryApi extends runtime.BaseAPI {
   /**
    * Get list of all countries
    */
-  async v1ListCountriesRaw(
+  private async v1ListCountriesRaw(
     requestParameters: V1ListCountriesRequest,
     initOverrides?: RequestInit,
   ): Promise<runtime.ApiResponse<ListCountriesOut>> {

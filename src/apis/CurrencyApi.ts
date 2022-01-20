@@ -47,7 +47,7 @@ export class CurrencyApi extends runtime.BaseAPI {
   /**
    * Convert currency to another currency
    */
-  async v1ConvertCurrencyRaw(
+  private async v1ConvertCurrencyRaw(
     requestParameters: V1ConvertCurrencyRequest,
     initOverrides?: RequestInit,
   ): Promise<runtime.ApiResponse<ConvertCurrencyOut>> {
@@ -116,7 +116,7 @@ export class CurrencyApi extends runtime.BaseAPI {
   /**
    * Get currency facts and information
    */
-  async v1GetCurrencyDetailsRaw(
+  private async v1GetCurrencyDetailsRaw(
     requestParameters: V1GetCurrencyDetailsRequest,
     initOverrides?: RequestInit,
   ): Promise<runtime.ApiResponse<GetCurrencyDetailsOut>> {
@@ -186,7 +186,7 @@ export class CurrencyApi extends runtime.BaseAPI {
   /**
    * Get exchange rate for a currency
    */
-  async v1GetCurrencyExchangeRateRaw(
+  private async v1GetCurrencyExchangeRateRaw(
     requestParameters: V1GetCurrencyExchangeRateRequest,
     initOverrides?: RequestInit,
   ): Promise<runtime.ApiResponse<GetCurrencyExchangeRateOut>> {
@@ -251,7 +251,7 @@ export class CurrencyApi extends runtime.BaseAPI {
   /**
    * Get list of all currencies
    */
-  async v1ListCurrenciesRaw(
+  private async v1ListCurrenciesRaw(
     requestParameters: V1ListCurrenciesRequest,
     initOverrides?: RequestInit,
   ): Promise<runtime.ApiResponse<ListCurrenciesOut>> {

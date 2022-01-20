@@ -21,7 +21,7 @@ export class IPApi extends runtime.BaseAPI {
   /**
    * Get IP GEO Location and ISP details
    */
-  async v1GetIpDetailsRaw(
+  private async v1GetIpDetailsRaw(
     requestParameters: V1GetIpDetailsRequest,
     initOverrides?: RequestInit,
   ): Promise<runtime.ApiResponse<GetIpDetailsOut>> {

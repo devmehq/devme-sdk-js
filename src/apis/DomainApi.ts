@@ -5,6 +5,9 @@
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@dev.me
  *
+
+
+ *
  */
 
 import * as runtime from '../runtime';
@@ -21,7 +24,7 @@ export class DomainApi extends runtime.BaseAPI {
   /**
    * Get domain WHOIS details and registration information
    */
-  async v1GetDomainWhoisRaw(
+  private async v1GetDomainWhoisRaw(
     requestParameters: V1GetDomainWhoisRequest,
     initOverrides?: RequestInit,
   ): Promise<runtime.ApiResponse<GetDomainWhoisOut>> {
