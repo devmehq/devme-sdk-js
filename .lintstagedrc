@@ -1,0 +1,7 @@
+{
+  "src/**/*.ts?(x)": ["npx tslint --fix -c tslint.json","git add"],
+  "swagger/swagger.json": ["npm run lint:swagger", "git add"],
+  "package.json": ["prettier --write", "git add"],
+  "*.md": ["prettier --write", "git add"],
+  "*.y?(a)ml": ["prettier --write", "git add"]
+}

@@ -1,0 +1,7 @@
+app-dist
+dist
+.next
+node_modules
+src/providers/**/types/*.d.ts
+src/types/modules/*.d.ts
+swagger/swagger.json
