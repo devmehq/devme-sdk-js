@@ -1,6 +1,6 @@
 {
   "name": "@devmehq/sdk-js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "description": "DEV.ME SDK for JavaScript & TypeScript for Server & Browser, Compatible with Node.js & React.js & Vue.js & Angular.js",
   "keywords": [],
