@@ -1,0 +1,21 @@
+import { currencyApi } from './helper';
+import { expect } from 'chai';
+
+describe('currency', async function () {
+  it('should convert currency USD - EUR', async function () {
+    const result = await currencyApi.v1ConvertCurrency({
+      amount: 10,
+      from: 'USD',
+      to: 'EUR',
+    });
+    expect(result).to.be.eql({
+      convertedAmount: 8.819,
+      convertedText: '10 USD equal to 8.819 EUR',
+      exchangeRate: 0.8819,
+      from: 'USD',
+      originalAmount: 10,
+      rateTime: '2022-01-20T14:49:28.046Z',
+      to: 'EUR',
+    });
+  });
+});
