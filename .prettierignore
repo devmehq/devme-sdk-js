@@ -1,7 +1,6 @@
-app-dist
+server-dist
 dist
 .next
+.env
+.prettierignore
 node_modules
-src/providers/**/types/*.d.ts
-src/types/modules/*.d.ts
-swagger/swagger.json

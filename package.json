@@ -6,7 +6,7 @@
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "git://github.com/devmehq/open-graph-extractor"
+    "url": "https://github.com/devmehq/devme-sdk-js"
   },
   "license": "MIT",
   "author": "DEV.ME <support@dev.me> (https://dev.me)",
