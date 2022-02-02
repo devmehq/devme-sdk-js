@@ -30,7 +30,7 @@ import { CurrencyApi, Configuration } from '@devmehq/sdk-js';
 const config = new Configuration({ apiKey: 'demo-key' });
 const currencyApi = new CurrencyApi(config);
 
-const result = await currencyApi.v1ConvertCurrency({
+const { data } = await currencyApi.v1ConvertCurrency({
   amount: 10,
   from: 'USD',
   to: 'EUR',
@@ -52,7 +52,7 @@ import { IPApi, Configuration } from '@devmehq/sdk-js';
 const config = new Configuration({ apiKey: 'demo-key' });
 const ipApi = new IPApi(config);
 
-const result = await ipApi.v1GetIpDetails({ ip: '52.45.23.11' });
+const { data } = await ipApi.v1GetIpDetails({ ip: '52.45.23.11' });
 
 // {
 //   asn: 14618,

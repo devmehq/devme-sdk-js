@@ -3,8 +3,8 @@ import { expect } from 'chai';
 
 describe('ip', async function () {
   it('should get the correct data', async function () {
-    const result = await ipApi.v1GetIpDetails({ ip: '52.45.23.11' });
-    expect(result).to.be.eql({
+    const { data } = await ipApi.v1GetIpDetails({ ip: '52.45.23.11' });
+    expect(data).to.be.eql({
       asn: 14618,
       aso: 'AMAZON-AES',
       city: {

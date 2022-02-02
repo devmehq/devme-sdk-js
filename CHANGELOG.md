@@ -1,5 +1,10 @@
 # Change Log
 
+## v1.1.1
+- Remove node-fetch dependency
+- Add axios client for request
+- Enhance typing
+
 ## v1.1.0
 - Initial stable release
 - Adding tests
