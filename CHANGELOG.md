@@ -1,6 +1,6 @@
 # Change Log
 
-## v1.1.1
+## v1.1.2
 - Remove node-fetch dependency
 - Add axios client for request
 - Enhance typing
