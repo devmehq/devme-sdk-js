@@ -7,18 +7,18 @@ describe('ip', async function () {
     expect(data).to.be.contain({
       asn: 14618,
       aso: 'AMAZON-AES',
-      city: {
-        areaCode: '0',
-        accuracyRadius: 1000,
-        latitude: 39.0469,
-        longitude: -77.4903,
-        name: 'Ashburn',
-        region: 'Virginia',
-        timeZone: 'America/New_York',
-      },
       countryCode: 'US',
       ip: '52.45.23.11',
       registeredCountryCode: 'US',
+    });
+    expect(data?.city).to.be.contain({
+      name: 'Ashburn',
+      region: 'Virginia',
+      latitude: 39.0469,
+      longitude: -77.4903,
+      accuracyRadius: 1000,
+      timeZone: 'America/New_York',
+      areaCode: '0',
     });
   });
 });
