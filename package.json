@@ -47,7 +47,7 @@
     "swagger/**/*.json": "prettier --write"
   },
   "dependencies": {
-    "axios": "0.27.2"
+    "axios": "1.0.0"
   },
   "devDependencies": {
     "@types/chai": "4.3.3",
