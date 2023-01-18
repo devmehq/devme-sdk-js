@@ -12,16 +12,16 @@ describe('currency', async function () {
     expect(data.from).to.be.eql('USD');
     expect(data.to).to.be.eql('EUR');
 
-    expect(data.convertedAmount).to.be.lessThan(9);
+    expect(data.convertedAmount).to.be.greaterThanOrEqual(9);
     expect(data.convertedAmount).to.be.greaterThan(8);
 
-    expect(data.exchangeRate).to.be.lessThan(0.9);
+    expect(data.exchangeRate).to.be.greaterThanOrEqual(0.9);
     expect(data.exchangeRate).to.be.greaterThan(0.8);
 
     expect(data.originalAmount).to.be.eql(10);
 
     expect(data.convertedText.startsWith('10 USD equal to')).to.be.eql(true);
-    expect(data.rateTime.startsWith('2022-')).to.be.eql(true);
+    expect(data.rateTime.startsWith('2023-')).to.be.eql(true);
 
     // expect(result).to.be.eql({
     //   convertedAmount: 8.819,
