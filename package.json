@@ -42,9 +42,7 @@
   },
   "lint-staged": {
     "src/**/*.{ts,json}": "prettier --write",
-    "__tests__/**/*.{ts}": "prettier --write",
-    "__api_flows__/**/*.ts": "prettier --write",
-    "swagger/**/*.json": "prettier --write"
+    "__tests__/**/*.{ts,json}": "prettier --write"
   },
   "dependencies": {
     "axios": "1.2.3"
