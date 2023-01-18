@@ -33,10 +33,10 @@
   "typings": "./index.d.ts",
   "scripts": {
     "build": "rm -rf dist && tsc -p .",
-    "lint": "eslint src test",
+    "lint": "eslint src __tests__",
     "lint-fix": "yarn lint -- --fix",
     "prepare": "yarn husky install",
-    "prettier": "prettier --write \"src/**/*.{ts,json}\" \"test/**/*.{ts,json}\"",
+    "prettier": "prettier --write \"src/**/*.{ts,json}\" \"__tests__/**/*.{ts,json}\"",
     "test": "TS_NODE_TRANSPILE_ONLY=1 TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha",
     "test-ci": "TS_NODE_TRANSPILE_ONLY=1 TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha"
   },
