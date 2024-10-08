@@ -48,7 +48,7 @@
     "axios": "1.7.7"
   },
   "devDependencies": {
-    "@types/chai": "4.3.20",
+    "@types/chai": "5.0.0",
     "@types/mocha": "10.0.9",
     "chai": "5.1.1",
     "husky": "9.1.6",
