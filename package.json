@@ -48,12 +48,12 @@
     "axios": "1.7.7"
   },
   "devDependencies": {
-    "@types/chai": "5.0.0",
+    "@types/chai": "5.0.1",
     "@types/mocha": "10.0.9",
-    "chai": "5.1.1",
+    "chai": "5.1.2",
     "husky": "9.1.6",
     "lint-staged": "15.2.10",
-    "mocha": "10.7.3",
+    "mocha": "10.8.1",
     "prettier": "3.3.3",
     "pretty-quick": "4.0.0",
     "should": "13.2.3",
