@@ -45,19 +45,19 @@
     "__tests__/**/*.{ts,json}": "prettier --write"
   },
   "dependencies": {
-    "axios": "1.7.9"
+    "axios": "1.8.3"
   },
   "devDependencies": {
-    "@types/chai": "5.0.1",
+    "@types/chai": "5.2.0",
     "@types/mocha": "10.0.10",
     "chai": "5.2.0",
     "husky": "9.1.7",
-    "lint-staged": "15.4.3",
+    "lint-staged": "15.5.0",
     "mocha": "11.1.0",
-    "prettier": "3.5.2",
-    "pretty-quick": "4.0.0",
+    "prettier": "3.5.3",
+    "pretty-quick": "4.1.1",
     "should": "13.2.3",
     "ts-node": "10.9.2",
-    "typescript": "5.7.3"
+    "typescript": "5.8.2"
   }
 }
