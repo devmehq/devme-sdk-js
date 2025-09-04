@@ -50,10 +50,10 @@
   "devDependencies": {
     "@types/chai": "5.2.2",
     "@types/mocha": "10.0.10",
-    "chai": "5.2.1",
+    "chai": "5.3.3",
     "husky": "9.1.7",
-    "lint-staged": "16.1.5",
-    "mocha": "11.7.1",
+    "lint-staged": "16.1.6",
+    "mocha": "11.7.2",
     "prettier": "3.6.2",
     "pretty-quick": "4.2.2",
     "should": "13.2.3",
