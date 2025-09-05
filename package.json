@@ -1,6 +1,6 @@
 {
   "name": "@devmehq/sdk-js",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "DEV.ME SDK for JavaScript & TypeScript for Server & Browser, Compatible with Node.js & React & Vue.js & Angular",
   "keywords": [
     "Email SMTP Verification",
