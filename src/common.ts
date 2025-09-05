@@ -4,6 +4,10 @@
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@dev.me
+ *
+
+
+ *
  */
 
 import type { AxiosInstance, AxiosResponse } from 'axios';
@@ -27,7 +31,7 @@ export const assertParamExists = (functionName: string, paramName: string, param
 };
 
 export const setApiKeyToObject = async (object: any, keyParamName: string, configuration?: Configuration) => {
-  if (configuration?.apiKey) {
+  if (configuration && configuration.apiKey) {
     const localVarApiKeyValue =
       typeof configuration.apiKey === 'function'
         ? await configuration.apiKey(keyParamName)
@@ -38,27 +42,27 @@ export const setApiKeyToObject = async (object: any, keyParamName: string, confi
 
 export const setBasicAuthToObject = (object: any, configuration?: Configuration) => {
   if (configuration && (configuration.username || configuration.password)) {
-    object.auth = { username: configuration.username, password: configuration.password };
+    object['auth'] = { username: configuration.username, password: configuration.password };
   }
 };
 
 export const setBearerAuthToObject = async (object: any, configuration?: Configuration) => {
-  if (configuration?.accessToken) {
+  if (configuration && configuration.accessToken) {
     const accessToken =
       typeof configuration.accessToken === 'function'
         ? await configuration.accessToken()
         : await configuration.accessToken;
-    object.Authorization = `Bearer ${accessToken}`;
+    object['Authorization'] = 'Bearer ' + accessToken;
   }
 };
 
 export const setOAuthToObject = async (object: any, name: string, scopes: string[], configuration?: Configuration) => {
-  if (configuration?.accessToken) {
+  if (configuration && configuration.accessToken) {
     const localVarAccessTokenValue =
       typeof configuration.accessToken === 'function'
         ? await configuration.accessToken(name, scopes)
         : await configuration.accessToken;
-    object.Authorization = `Bearer ${localVarAccessTokenValue}`;
+    object['Authorization'] = 'Bearer ' + localVarAccessTokenValue;
   }
 };
 

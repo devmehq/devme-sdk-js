@@ -4,9 +4,11 @@
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@dev.me
+ *
 
+
+ * 
  */
 
 export * from './api';
 export * from './configuration';
-// test
