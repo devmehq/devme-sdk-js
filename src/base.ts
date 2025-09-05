@@ -4,10 +4,7 @@
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@dev.me
- *
 
-
- *
  */
 
 // Some imports not used depending on template conditions
