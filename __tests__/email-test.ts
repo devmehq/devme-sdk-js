@@ -4,9 +4,9 @@ describe('email', () => {
   it('should validate a valid email address', async () => {
     const { data } = await emailApi.v1GetEmailDetails({
       email: 'test@gmail.com',
-      verifyMx: 'true',
-      verifySmtp: 'false',
-      detectName: 'true',
+      verifyMx: true,
+      verifySmtp: false,
+      detectName: true,
     });
 
     expect(data.email).toBe('test@gmail.com');
@@ -19,8 +19,8 @@ describe('email', () => {
   it('should detect disposable email', async () => {
     const { data } = await emailApi.v1GetEmailDetails({
       email: 'test@mailinator.com',
-      verifyMx: 'false',
-      verifySmtp: 'false',
+      verifyMx: false,
+      verifySmtp: false,
     });
 
     expect(data.email).toBe('test@mailinator.com');
@@ -30,8 +30,8 @@ describe('email', () => {
   it('should validate email with domain check', async () => {
     const { data } = await emailApi.v1GetEmailDetails({
       email: 'test@example.com',
-      verifyMx: 'true',
-      verifySmtp: 'false',
+      verifyMx: true,
+      verifySmtp: false,
     });
 
     expect(data.email).toBe('test@example.com');
@@ -43,8 +43,8 @@ describe('email', () => {
   it('should check free email provider', async () => {
     const { data } = await emailApi.v1GetEmailDetails({
       email: 'user@gmail.com',
-      verifyMx: 'false',
-      verifySmtp: 'false',
+      verifyMx: false,
+      verifySmtp: false,
     });
 
     expect(data.email).toBe('user@gmail.com');
@@ -55,9 +55,9 @@ describe('email', () => {
   it('should provide comprehensive email validation', async () => {
     const { data } = await emailApi.v1GetEmailDetails({
       email: 'john.doe@gmail.com',
-      verifyMx: 'true',
-      verifySmtp: 'false',
-      detectName: 'true',
+      verifyMx: true,
+      verifySmtp: false,
+      detectName: true,
     });
 
     expect(data.email).toBe('john.doe@gmail.com');
@@ -80,8 +80,8 @@ describe('email', () => {
   it('should validate business email', async () => {
     const { data } = await emailApi.v1GetEmailDetails({
       email: 'contact@microsoft.com',
-      verifyMx: 'true',
-      verifySmtp: 'false',
+      verifyMx: true,
+      verifySmtp: false,
     });
 
     expect(data.email).toBe('contact@microsoft.com');
