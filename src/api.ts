@@ -2374,7 +2374,7 @@ export const APIKeyApiAxiosParamCreator = (configuration?: Configuration) => ({
     localVarHeaderParameter['Content-Type'] = 'application/json';
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
     localVarRequestOptions.data = serializeDataIfNeeded(createApiKeyIn, localVarRequestOptions, configuration);
 
@@ -2413,7 +2413,7 @@ export const APIKeyApiAxiosParamCreator = (configuration?: Configuration) => ({
     localVarHeaderParameter['Content-Type'] = 'application/json';
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
     localVarRequestOptions.data = serializeDataIfNeeded(deleteApiKeyIn, localVarRequestOptions, configuration);
 
@@ -2455,7 +2455,7 @@ export const APIKeyApiAxiosParamCreator = (configuration?: Configuration) => ({
     localVarHeaderParameter['Content-Type'] = 'application/json';
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
     localVarRequestOptions.data = serializeDataIfNeeded(getApiKeyDetailsIn, localVarRequestOptions, configuration);
 
@@ -2489,7 +2489,7 @@ export const APIKeyApiAxiosParamCreator = (configuration?: Configuration) => ({
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -2527,7 +2527,7 @@ export const APIKeyApiAxiosParamCreator = (configuration?: Configuration) => ({
     localVarHeaderParameter['Content-Type'] = 'application/json';
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
     localVarRequestOptions.data = serializeDataIfNeeded(listApiKeysIn, localVarRequestOptions, configuration);
 
@@ -2566,7 +2566,7 @@ export const APIKeyApiAxiosParamCreator = (configuration?: Configuration) => ({
     localVarHeaderParameter['Content-Type'] = 'application/json';
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
     localVarRequestOptions.data = serializeDataIfNeeded(updateApiKeyIn, localVarRequestOptions, configuration);
 
@@ -2966,19 +2966,19 @@ export const APIUsageApiAxiosParamCreator = (configuration?: Configuration) => (
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (from !== undefined) {
-      localVarQueryParameter['from'] = from;
+      localVarQueryParameter.from = from;
     }
 
     if (to !== undefined) {
-      localVarQueryParameter['to'] = to;
+      localVarQueryParameter.to = to;
     }
 
     if (service !== undefined) {
-      localVarQueryParameter['service'] = service;
+      localVarQueryParameter.service = service;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -3021,23 +3021,23 @@ export const APIUsageApiAxiosParamCreator = (configuration?: Configuration) => (
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (from !== undefined) {
-      localVarQueryParameter['from'] = from;
+      localVarQueryParameter.from = from;
     }
 
     if (to !== undefined) {
-      localVarQueryParameter['to'] = to;
+      localVarQueryParameter.to = to;
     }
 
     if (service !== undefined) {
-      localVarQueryParameter['service'] = service;
+      localVarQueryParameter.service = service;
     }
 
     if (format !== undefined) {
-      localVarQueryParameter['format'] = format;
+      localVarQueryParameter.format = format;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -3285,31 +3285,31 @@ export const CountryApiAxiosParamCreator = (configuration?: Configuration) => ({
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (id !== undefined) {
-      localVarQueryParameter['id'] = id;
+      localVarQueryParameter.id = id;
     }
 
     if (name !== undefined) {
-      localVarQueryParameter['name'] = name;
+      localVarQueryParameter.name = name;
     }
 
     if (countryCode !== undefined) {
-      localVarQueryParameter['countryCode'] = countryCode;
+      localVarQueryParameter.countryCode = countryCode;
     }
 
     if (stateCode !== undefined) {
-      localVarQueryParameter['stateCode'] = stateCode;
+      localVarQueryParameter.stateCode = stateCode;
     }
 
     if (expand) {
-      localVarQueryParameter['expand'] = expand;
+      localVarQueryParameter.expand = expand;
     }
 
     if (exclude) {
-      localVarQueryParameter['exclude'] = exclude;
+      localVarQueryParameter.exclude = exclude;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -3352,19 +3352,19 @@ export const CountryApiAxiosParamCreator = (configuration?: Configuration) => ({
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (code !== undefined) {
-      localVarQueryParameter['code'] = code;
+      localVarQueryParameter.code = code;
     }
 
     if (expand) {
-      localVarQueryParameter['expand'] = expand;
+      localVarQueryParameter.expand = expand;
     }
 
     if (exclude) {
-      localVarQueryParameter['exclude'] = exclude;
+      localVarQueryParameter.exclude = exclude;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -3400,11 +3400,11 @@ export const CountryApiAxiosParamCreator = (configuration?: Configuration) => ({
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (code !== undefined) {
-      localVarQueryParameter['code'] = code;
+      localVarQueryParameter.code = code;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -3449,27 +3449,27 @@ export const CountryApiAxiosParamCreator = (configuration?: Configuration) => ({
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (name !== undefined) {
-      localVarQueryParameter['name'] = name;
+      localVarQueryParameter.name = name;
     }
 
     if (country) {
-      localVarQueryParameter['country'] = country;
+      localVarQueryParameter.country = country;
     }
 
     if (sort) {
-      localVarQueryParameter['sort'] = sort;
+      localVarQueryParameter.sort = sort;
     }
 
     if (page !== undefined) {
-      localVarQueryParameter['page'] = page;
+      localVarQueryParameter.page = page;
     }
 
     if (pageSize !== undefined) {
-      localVarQueryParameter['pageSize'] = pageSize;
+      localVarQueryParameter.pageSize = pageSize;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -3516,31 +3516,31 @@ export const CountryApiAxiosParamCreator = (configuration?: Configuration) => ({
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (code) {
-      localVarQueryParameter['code'] = code;
+      localVarQueryParameter.code = code;
     }
 
     if (expand) {
-      localVarQueryParameter['expand'] = expand;
+      localVarQueryParameter.expand = expand;
     }
 
     if (exclude) {
-      localVarQueryParameter['exclude'] = exclude;
+      localVarQueryParameter.exclude = exclude;
     }
 
     if (sort) {
-      localVarQueryParameter['sort'] = sort;
+      localVarQueryParameter.sort = sort;
     }
 
     if (page !== undefined) {
-      localVarQueryParameter['page'] = page;
+      localVarQueryParameter.page = page;
     }
 
     if (pageSize !== undefined) {
-      localVarQueryParameter['pageSize'] = pageSize;
+      localVarQueryParameter.pageSize = pageSize;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -4084,19 +4084,19 @@ export const CurrencyApiAxiosParamCreator = (configuration?: Configuration) => (
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (amount !== undefined) {
-      localVarQueryParameter['amount'] = amount;
+      localVarQueryParameter.amount = amount;
     }
 
     if (from !== undefined) {
-      localVarQueryParameter['from'] = from;
+      localVarQueryParameter.from = from;
     }
 
     if (to !== undefined) {
-      localVarQueryParameter['to'] = to;
+      localVarQueryParameter.to = to;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -4141,23 +4141,23 @@ export const CurrencyApiAxiosParamCreator = (configuration?: Configuration) => (
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (code !== undefined) {
-      localVarQueryParameter['code'] = code;
+      localVarQueryParameter.code = code;
     }
 
     if (expand) {
-      localVarQueryParameter['expand'] = expand;
+      localVarQueryParameter.expand = expand;
     }
 
     if (exclude) {
-      localVarQueryParameter['exclude'] = exclude;
+      localVarQueryParameter.exclude = exclude;
     }
 
     if (language) {
-      localVarQueryParameter['language'] = language;
+      localVarQueryParameter.language = language;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -4200,15 +4200,15 @@ export const CurrencyApiAxiosParamCreator = (configuration?: Configuration) => (
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (from !== undefined) {
-      localVarQueryParameter['from'] = from;
+      localVarQueryParameter.from = from;
     }
 
     if (to !== undefined) {
-      localVarQueryParameter['to'] = to;
+      localVarQueryParameter.to = to;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -4257,35 +4257,35 @@ export const CurrencyApiAxiosParamCreator = (configuration?: Configuration) => (
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (code) {
-      localVarQueryParameter['code'] = code;
+      localVarQueryParameter.code = code;
     }
 
     if (expand) {
-      localVarQueryParameter['expand'] = expand;
+      localVarQueryParameter.expand = expand;
     }
 
     if (exclude) {
-      localVarQueryParameter['exclude'] = exclude;
+      localVarQueryParameter.exclude = exclude;
     }
 
     if (language) {
-      localVarQueryParameter['language'] = language;
+      localVarQueryParameter.language = language;
     }
 
     if (sort) {
-      localVarQueryParameter['sort'] = sort;
+      localVarQueryParameter.sort = sort;
     }
 
     if (page !== undefined) {
-      localVarQueryParameter['page'] = page;
+      localVarQueryParameter.page = page;
     }
 
     if (pageSize !== undefined) {
-      localVarQueryParameter['pageSize'] = pageSize;
+      localVarQueryParameter.pageSize = pageSize;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -4723,15 +4723,15 @@ export const DomainToolsApiAxiosParamCreator = (configuration?: Configuration) =
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (domain !== undefined) {
-      localVarQueryParameter['domain'] = domain;
+      localVarQueryParameter.domain = domain;
     }
 
     if (parseWhoisToJson !== undefined) {
-      localVarQueryParameter['parseWhoisToJson'] = parseWhoisToJson;
+      localVarQueryParameter.parseWhoisToJson = parseWhoisToJson;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -4770,15 +4770,15 @@ export const DomainToolsApiAxiosParamCreator = (configuration?: Configuration) =
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (address !== undefined) {
-      localVarQueryParameter['address'] = address;
+      localVarQueryParameter.address = address;
     }
 
     if (type !== undefined) {
-      localVarQueryParameter['type'] = type;
+      localVarQueryParameter.type = type;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -5010,39 +5010,39 @@ export const EmailApiAxiosParamCreator = (configuration?: Configuration) => ({
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (email !== undefined) {
-      localVarQueryParameter['email'] = email;
+      localVarQueryParameter.email = email;
     }
 
     if (verifyMx !== undefined) {
-      localVarQueryParameter['verifyMx'] = verifyMx;
+      localVarQueryParameter.verifyMx = verifyMx;
     }
 
     if (verifySmtp !== undefined) {
-      localVarQueryParameter['verifySmtp'] = verifySmtp;
+      localVarQueryParameter.verifySmtp = verifySmtp;
     }
 
     if (detectName !== undefined) {
-      localVarQueryParameter['detectName'] = detectName;
+      localVarQueryParameter.detectName = detectName;
     }
 
     if (suggestDomain !== undefined) {
-      localVarQueryParameter['suggestDomain'] = suggestDomain;
+      localVarQueryParameter.suggestDomain = suggestDomain;
     }
 
     if (checkDomainAge !== undefined) {
-      localVarQueryParameter['checkDomainAge'] = checkDomainAge;
+      localVarQueryParameter.checkDomainAge = checkDomainAge;
     }
 
     if (checkDomainRegistration !== undefined) {
-      localVarQueryParameter['checkDomainRegistration'] = checkDomainRegistration;
+      localVarQueryParameter.checkDomainRegistration = checkDomainRegistration;
     }
 
     if (timeout !== undefined) {
-      localVarQueryParameter['timeout'] = timeout;
+      localVarQueryParameter.timeout = timeout;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -5242,11 +5242,11 @@ export const IPApiAxiosParamCreator = (configuration?: Configuration) => ({
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (ip !== undefined) {
-      localVarQueryParameter['ip'] = ip;
+      localVarQueryParameter.ip = ip;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -5372,7 +5372,7 @@ export const OneTimeURLApiAxiosParamCreator = (configuration?: Configuration) =>
     localVarHeaderParameter['Content-Type'] = 'application/json';
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
     localVarRequestOptions.data = serializeDataIfNeeded(createOnetimeUrlIn, localVarRequestOptions, configuration);
 
@@ -5414,7 +5414,7 @@ export const OneTimeURLApiAxiosParamCreator = (configuration?: Configuration) =>
     localVarHeaderParameter['Content-Type'] = 'application/json';
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
     localVarRequestOptions.data = serializeDataIfNeeded(deleteOnetimeUrlIn, localVarRequestOptions, configuration);
 
@@ -5458,23 +5458,23 @@ export const OneTimeURLApiAxiosParamCreator = (configuration?: Configuration) =>
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (sid !== undefined) {
-      localVarQueryParameter['sid'] = sid;
+      localVarQueryParameter.sid = sid;
     }
 
     if (id !== undefined) {
-      localVarQueryParameter['_id'] = id;
+      localVarQueryParameter._id = id;
     }
 
     if (domain !== undefined) {
-      localVarQueryParameter['domain'] = domain;
+      localVarQueryParameter.domain = domain;
     }
 
     if (passphrase !== undefined) {
-      localVarQueryParameter['passphrase'] = passphrase;
+      localVarQueryParameter.passphrase = passphrase;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -5515,19 +5515,19 @@ export const OneTimeURLApiAxiosParamCreator = (configuration?: Configuration) =>
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (sort) {
-      localVarQueryParameter['sort'] = sort;
+      localVarQueryParameter.sort = sort;
     }
 
     if (page !== undefined) {
-      localVarQueryParameter['page'] = page;
+      localVarQueryParameter.page = page;
     }
 
     if (pageSize !== undefined) {
-      localVarQueryParameter['pageSize'] = pageSize;
+      localVarQueryParameter.pageSize = pageSize;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -5897,11 +5897,11 @@ export const PhoneApiAxiosParamCreator = (configuration?: Configuration) => ({
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (phone !== undefined) {
-      localVarQueryParameter['phone'] = phone;
+      localVarQueryParameter.phone = phone;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -6024,7 +6024,7 @@ export const QRCodeApiAxiosParamCreator = (configuration?: Configuration) => ({
     localVarHeaderParameter['Content-Type'] = 'application/json';
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
     localVarRequestOptions.data = serializeDataIfNeeded(createQrCodeIn, localVarRequestOptions, configuration);
 
@@ -6066,13 +6066,13 @@ export const QRCodeApiAxiosParamCreator = (configuration?: Configuration) => ({
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (sid !== undefined) {
-      localVarQueryParameter['sid'] = sid;
+      localVarQueryParameter.sid = sid;
     }
 
     localVarHeaderParameter['Content-Type'] = 'application/json';
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
     localVarRequestOptions.data = serializeDataIfNeeded(trackQrViewIn, localVarRequestOptions, configuration);
 
@@ -6111,7 +6111,7 @@ export const QRCodeApiAxiosParamCreator = (configuration?: Configuration) => ({
     localVarHeaderParameter['Content-Type'] = 'application/json';
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
     localVarRequestOptions.data = serializeDataIfNeeded(deleteQrCodeIn, localVarRequestOptions, configuration);
 
@@ -6155,23 +6155,23 @@ export const QRCodeApiAxiosParamCreator = (configuration?: Configuration) => ({
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (sid !== undefined) {
-      localVarQueryParameter['sid'] = sid;
+      localVarQueryParameter.sid = sid;
     }
 
     if (id !== undefined) {
-      localVarQueryParameter['_id'] = id;
+      localVarQueryParameter._id = id;
     }
 
     if (from !== undefined) {
-      localVarQueryParameter['from'] = from;
+      localVarQueryParameter.from = from;
     }
 
     if (to !== undefined) {
-      localVarQueryParameter['to'] = to;
+      localVarQueryParameter.to = to;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -6206,15 +6206,15 @@ export const QRCodeApiAxiosParamCreator = (configuration?: Configuration) => ({
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (sid !== undefined) {
-      localVarQueryParameter['sid'] = sid;
+      localVarQueryParameter.sid = sid;
     }
 
     if (id !== undefined) {
-      localVarQueryParameter['_id'] = id;
+      localVarQueryParameter._id = id;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -6255,7 +6255,7 @@ export const QRCodeApiAxiosParamCreator = (configuration?: Configuration) => ({
     localVarHeaderParameter['Content-Type'] = 'application/json';
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
     localVarRequestOptions.data = serializeDataIfNeeded(previewQrCodeIn, localVarRequestOptions, configuration);
 
@@ -6303,31 +6303,31 @@ export const QRCodeApiAxiosParamCreator = (configuration?: Configuration) => ({
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (page !== undefined) {
-      localVarQueryParameter['page'] = page;
+      localVarQueryParameter.page = page;
     }
 
     if (pageSize !== undefined) {
-      localVarQueryParameter['pageSize'] = pageSize;
+      localVarQueryParameter.pageSize = pageSize;
     }
 
     if (type !== undefined) {
-      localVarQueryParameter['type'] = type;
+      localVarQueryParameter.type = type;
     }
 
     if (isActive !== undefined) {
-      localVarQueryParameter['isActive'] = isActive;
+      localVarQueryParameter.isActive = isActive;
     }
 
     if (sort !== undefined) {
-      localVarQueryParameter['sort'] = sort;
+      localVarQueryParameter.sort = sort;
     }
 
     if (search !== undefined) {
-      localVarQueryParameter['search'] = search;
+      localVarQueryParameter.search = search;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -6365,7 +6365,7 @@ export const QRCodeApiAxiosParamCreator = (configuration?: Configuration) => ({
     localVarHeaderParameter['Content-Type'] = 'application/json';
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
     localVarRequestOptions.data = serializeDataIfNeeded(updateQrCodeIn, localVarRequestOptions, configuration);
 
@@ -7032,7 +7032,7 @@ export const ShortURLApiAxiosParamCreator = (configuration?: Configuration) => (
     localVarHeaderParameter['Content-Type'] = 'application/json';
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
     localVarRequestOptions.data = serializeDataIfNeeded(
       createBulkShortUrlsRequest,
@@ -7078,7 +7078,7 @@ export const ShortURLApiAxiosParamCreator = (configuration?: Configuration) => (
     localVarHeaderParameter['Content-Type'] = 'application/json';
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
     localVarRequestOptions.data = serializeDataIfNeeded(createShortUrlIn, localVarRequestOptions, configuration);
 
@@ -7120,7 +7120,7 @@ export const ShortURLApiAxiosParamCreator = (configuration?: Configuration) => (
     localVarHeaderParameter['Content-Type'] = 'application/json';
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
     localVarRequestOptions.data = serializeDataIfNeeded(deleteShortUrlIn, localVarRequestOptions, configuration);
 
@@ -7162,19 +7162,19 @@ export const ShortURLApiAxiosParamCreator = (configuration?: Configuration) => (
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (sid !== undefined) {
-      localVarQueryParameter['sid'] = sid;
+      localVarQueryParameter.sid = sid;
     }
 
     if (domain !== undefined) {
-      localVarQueryParameter['domain'] = domain;
+      localVarQueryParameter.domain = domain;
     }
 
     if (id !== undefined) {
-      localVarQueryParameter['_id'] = id;
+      localVarQueryParameter._id = id;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -7215,19 +7215,19 @@ export const ShortURLApiAxiosParamCreator = (configuration?: Configuration) => (
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (sid !== undefined) {
-      localVarQueryParameter['sid'] = sid;
+      localVarQueryParameter.sid = sid;
     }
 
     if (domain !== undefined) {
-      localVarQueryParameter['domain'] = domain;
+      localVarQueryParameter.domain = domain;
     }
 
     if (id !== undefined) {
-      localVarQueryParameter['_id'] = id;
+      localVarQueryParameter._id = id;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -7270,23 +7270,23 @@ export const ShortURLApiAxiosParamCreator = (configuration?: Configuration) => (
     await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
     if (batchId !== undefined) {
-      localVarQueryParameter['batchId'] = batchId;
+      localVarQueryParameter.batchId = batchId;
     }
 
     if (sort) {
-      localVarQueryParameter['sort'] = sort;
+      localVarQueryParameter.sort = sort;
     }
 
     if (page !== undefined) {
-      localVarQueryParameter['page'] = page;
+      localVarQueryParameter.page = page;
     }
 
     if (pageSize !== undefined) {
-      localVarQueryParameter['pageSize'] = pageSize;
+      localVarQueryParameter.pageSize = pageSize;
     }
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
     return {
@@ -7327,7 +7327,7 @@ export const ShortURLApiAxiosParamCreator = (configuration?: Configuration) => (
     localVarHeaderParameter['Content-Type'] = 'application/json';
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
     localVarRequestOptions.data = serializeDataIfNeeded(updateShortUrlIn, localVarRequestOptions, configuration);
 
@@ -7887,7 +7887,7 @@ export const URLMetadataApiAxiosParamCreator = (configuration?: Configuration) =
     localVarHeaderParameter['Content-Type'] = 'application/json';
 
     setSearchParams(localVarUrlObj, localVarQueryParameter);
-    const headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
     localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
     localVarRequestOptions.data = serializeDataIfNeeded(scrapeUrlDataIn, localVarRequestOptions, configuration);
 
