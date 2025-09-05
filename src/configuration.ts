@@ -1,9 +1,10 @@
 /**
  * DEV.ME API Documentation
- * DEV.ME API Documentation [Currency Conversion and Exchange Rates API](https://dev.me/products/currency) - [IP2Location, IP Country, IP Information API](https://dev.me/products/ip) -  [Email Validation, Mailbox Verification](https://dev.me/products/email) - [Phone Number Validation](https://dev.me/products/phone). You can learn more at [dev.me](https://dev.me). For this example you can use api key `demo-key` to test the APIs
+ * **DEV.ME API Platform** - 19 powerful services across 7 categories  **Validation & Verification:** [Email Validation API](https://dev.me/products/email) • [Phone Validation API](https://dev.me/products/phone) • [IP Geolocation API](https://dev.me/products/ip) **Financial & Currency:** [Currency Exchange API](https://dev.me/products/currency) • [Currency List API](https://dev.me/products/currency-list) **Domain & Security:** [Domain WHOIS API](https://dev.me/products/domain-whois) • [DNS Lookup API](https://dev.me/products/dns-lookup) • [Domain Tools API](https://dev.me/products/domain-tools) **Content & Media:** [QR Code Generator API](https://dev.me/products/qr-code-generator) • [Image Placeholders API](https://dev.me/products/image-placeholder) • [Image Optimization API](https://dev.me/products/image-optimizer) **URL & Web:** [URL Shortening API](https://dev.me/products/short-url) • [Web Scraping API](https://dev.me/products/url-scrapper) • [URL Metadata API](https://dev.me/products/url-metadata) • [One-Time URL API](https://dev.me/products/onetime-url) **Global Data:** [Country Data API](https://dev.me/products/country) • [City Data API](https://dev.me/products/city) **Management:** [API Key Management](https://dev.me/dashboard) • [API Usage Analytics](https://dev.me/dashboard)  **Quick Start:** Use API key `demo-key` for testing • Visit [dev.me](https://dev.me) for complete documentation **Authentication:** Header `x-api-key: YOUR_API_KEY` or Query Parameter `?x-api-key=YOUR_API_KEY` **[Rate Limits](https://dev.me/pricing):** Free (500/mo) • Essential (15K/mo) • Standard (60K/mo) • Professional (1M/mo) • Enterprise (Unlimited) **Support:** support@dev.me • [Documentation](https://dev.me/documentation)
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@dev.me
+
  */
 
 export interface ConfigurationParameters {
@@ -16,6 +17,7 @@ export interface ConfigurationParameters {
     | ((name?: string, scopes?: string[]) => string)
     | ((name?: string, scopes?: string[]) => Promise<string>);
   basePath?: string;
+  serverIndex?: number;
   baseOptions?: any;
   formDataCtor?: new () => any;
 }
@@ -24,28 +26,20 @@ export class Configuration {
   /**
    * parameter for apiKey security
    * @param name security name
-   * @memberof Configuration
    */
   apiKey?: string | Promise<string> | ((name: string) => string) | ((name: string) => Promise<string>);
   /**
    * parameter for basic security
-   *
-   * @type {string}
-   * @memberof Configuration
    */
   username?: string;
   /**
    * parameter for basic security
-   *
-   * @type {string}
-   * @memberof Configuration
    */
   password?: string;
   /**
    * parameter for oauth2 security
    * @param name security name
    * @param scopes oauth2 scope
-   * @memberof Configuration
    */
   accessToken?:
     | string
@@ -54,16 +48,14 @@ export class Configuration {
     | ((name?: string, scopes?: string[]) => Promise<string>);
   /**
    * override base path
-   *
-   * @type {string}
-   * @memberof Configuration
    */
   basePath?: string;
   /**
+   * override server index
+   */
+  serverIndex?: number;
+  /**
    * base options for axios calls
-   *
-   * @type {any}
-   * @memberof Configuration
    */
   baseOptions?: any;
   /**
@@ -81,7 +73,13 @@ export class Configuration {
     this.password = param.password;
     this.accessToken = param.accessToken;
     this.basePath = param.basePath;
-    this.baseOptions = param.baseOptions;
+    this.serverIndex = param.serverIndex;
+    this.baseOptions = {
+      ...param.baseOptions,
+      headers: {
+        ...param.baseOptions?.headers,
+      },
+    };
     this.formDataCtor = param.formDataCtor;
   }
 
@@ -96,7 +94,7 @@ export class Configuration {
    * @return True if the given MIME is JSON, false otherwise.
    */
   public isJsonMime(mime: string): boolean {
-    const jsonMime: RegExp = new RegExp('^(application/json|[^;/ \t]+/[^;/ \t]+[+]json)[ \t]*(;.*)?$', 'i');
+    const jsonMime: RegExp = new RegExp('^(application\/json|[^;/ \t]+\/[^;/ \t]+[+]json)[ \t]*(;.*)?$', 'i');
     return mime !== null && (jsonMime.test(mime) || mime.toLowerCase() === 'application/json-patch+json');
   }
 }

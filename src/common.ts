@@ -1,25 +1,21 @@
 /**
  * DEV.ME API Documentation
- * DEV.ME API Documentation [Currency Conversion and Exchange Rates API](https://dev.me/products/currency) - [IP2Location, IP Country, IP Information API](https://dev.me/products/ip) -  [Email Validation, Mailbox Verification](https://dev.me/products/email) - [Phone Number Validation](https://dev.me/products/phone). You can learn more at [dev.me](https://dev.me). For this example you can use api key `demo-key` to test the APIs
+ * **DEV.ME API Platform** - 19 powerful services across 7 categories  **Validation & Verification:** [Email Validation API](https://dev.me/products/email) • [Phone Validation API](https://dev.me/products/phone) • [IP Geolocation API](https://dev.me/products/ip) **Financial & Currency:** [Currency Exchange API](https://dev.me/products/currency) • [Currency List API](https://dev.me/products/currency-list) **Domain & Security:** [Domain WHOIS API](https://dev.me/products/domain-whois) • [DNS Lookup API](https://dev.me/products/dns-lookup) • [Domain Tools API](https://dev.me/products/domain-tools) **Content & Media:** [QR Code Generator API](https://dev.me/products/qr-code-generator) • [Image Placeholders API](https://dev.me/products/image-placeholder) • [Image Optimization API](https://dev.me/products/image-optimizer) **URL & Web:** [URL Shortening API](https://dev.me/products/short-url) • [Web Scraping API](https://dev.me/products/url-scrapper) • [URL Metadata API](https://dev.me/products/url-metadata) • [One-Time URL API](https://dev.me/products/onetime-url) **Global Data:** [Country Data API](https://dev.me/products/country) • [City Data API](https://dev.me/products/city) **Management:** [API Key Management](https://dev.me/dashboard) • [API Usage Analytics](https://dev.me/dashboard)  **Quick Start:** Use API key `demo-key` for testing • Visit [dev.me](https://dev.me) for complete documentation **Authentication:** Header `x-api-key: YOUR_API_KEY` or Query Parameter `?x-api-key=YOUR_API_KEY` **[Rate Limits](https://dev.me/pricing):** Free (500/mo) • Essential (15K/mo) • Standard (60K/mo) • Professional (1M/mo) • Enterprise (Unlimited) **Support:** support@dev.me • [Documentation](https://dev.me/documentation)
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@dev.me
  */
 
-import { Configuration } from './configuration';
-import { RequestArgs, RequiredError } from './base';
-import { AxiosInstance, AxiosResponse } from 'axios';
+import type { Configuration } from './configuration';
+import type { RequestArgs } from './base';
+import { RequiredError } from './base';
+import type { AxiosInstance, AxiosResponse } from 'axios';
 
-/**
- *
- * @export
- */
 export const DUMMY_BASE_URL = 'https://example.com';
 
 /**
  *
  * @throws {RequiredError}
- * @export
  */
 export const assertParamExists = function (functionName: string, paramName: string, paramValue: unknown) {
   if (paramValue === null || paramValue === undefined) {
@@ -30,10 +26,6 @@ export const assertParamExists = function (functionName: string, paramName: stri
   }
 };
 
-/**
- *
- * @export
- */
 export const setApiKeyToObject = async function (object: any, keyParamName: string, configuration?: Configuration) {
   if (configuration && configuration.apiKey) {
     const localVarApiKeyValue =
@@ -44,20 +36,12 @@ export const setApiKeyToObject = async function (object: any, keyParamName: stri
   }
 };
 
-/**
- *
- * @export
- */
 export const setBasicAuthToObject = function (object: any, configuration?: Configuration) {
   if (configuration && (configuration.username || configuration.password)) {
     object['auth'] = { username: configuration.username, password: configuration.password };
   }
 };
 
-/**
- *
- * @export
- */
 export const setBearerAuthToObject = async function (object: any, configuration?: Configuration) {
   if (configuration && configuration.accessToken) {
     const accessToken =
@@ -68,10 +52,6 @@ export const setBearerAuthToObject = async function (object: any, configuration?
   }
 };
 
-/**
- *
- * @export
- */
 export const setOAuthToObject = async function (
   object: any,
   name: string,
@@ -87,31 +67,31 @@ export const setOAuthToObject = async function (
   }
 };
 
-/**
- *
- * @export
- */
-export const setSearchParams = function (url: URL, ...objects: any[]) {
-  const searchParams = new URLSearchParams(url.search);
-  for (const object of objects) {
-    for (const key in object) {
-      if (Array.isArray(object[key])) {
-        searchParams.delete(key);
-        for (const item of object[key]) {
-          searchParams.append(key, item);
-        }
-      } else {
-        searchParams.set(key, object[key]);
-      }
+function setFlattenedQueryParams(urlSearchParams: URLSearchParams, parameter: any, key: string = ''): void {
+  if (parameter == null) return;
+  if (typeof parameter === 'object') {
+    if (Array.isArray(parameter)) {
+      (parameter as any[]).forEach((item) => setFlattenedQueryParams(urlSearchParams, item, key));
+    } else {
+      Object.keys(parameter).forEach((currentKey) =>
+        setFlattenedQueryParams(urlSearchParams, parameter[currentKey], `${key}${key !== '' ? '.' : ''}${currentKey}`),
+      );
+    }
+  } else {
+    if (urlSearchParams.has(key)) {
+      urlSearchParams.append(key, parameter);
+    } else {
+      urlSearchParams.set(key, parameter);
     }
   }
+}
+
+export const setSearchParams = function (url: URL, ...objects: any[]) {
+  const searchParams = new URLSearchParams(url.search);
+  setFlattenedQueryParams(searchParams, objects);
   url.search = searchParams.toString();
 };
 
-/**
- *
- * @export
- */
 export const serializeDataIfNeeded = function (value: any, requestOptions: any, configuration?: Configuration) {
   const nonString = typeof value !== 'string';
   const needsSerialization =
@@ -121,18 +101,10 @@ export const serializeDataIfNeeded = function (value: any, requestOptions: any, 
   return needsSerialization ? JSON.stringify(value !== undefined ? value : {}) : value || '';
 };
 
-/**
- *
- * @export
- */
 export const toPathString = function (url: URL) {
   return url.pathname + url.search + url.hash;
 };
 
-/**
- *
- * @export
- */
 export const createRequestFunction = function (
   axiosArgs: RequestArgs,
   globalAxios: AxiosInstance,
@@ -140,7 +112,10 @@ export const createRequestFunction = function (
   configuration?: Configuration,
 ) {
   return <T = unknown, R = AxiosResponse<T>>(axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-    const axiosRequestArgs = { ...axiosArgs.options, url: (configuration?.basePath || basePath) + axiosArgs.url };
+    const axiosRequestArgs = {
+      ...axiosArgs.options,
+      url: (axios.defaults.baseURL ? '' : (configuration?.basePath ?? basePath)) + axiosArgs.url,
+    };
     return axios.request<T, R>(axiosRequestArgs);
   };
 };
