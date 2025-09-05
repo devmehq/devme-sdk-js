@@ -7,11 +7,10 @@
 
  */
 
-import type { Configuration } from './configuration';
 // Some imports not used depending on template conditions
-// @ts-ignore
-import type { AxiosInstance, AxiosPromise, RawAxiosRequestConfig } from 'axios';
+import type { AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
+import type { Configuration } from './configuration';
 
 export const BASE_PATH = 'https://api.dev.me'.replace(/\/+$/, '');
 

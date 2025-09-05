@@ -16,6 +16,7 @@ concurrency:
 env:
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  DEVME_SDK_API_KEY: ${{ secrets.DEVME_SDK_API_KEY }}
   CI: true
 
 jobs:

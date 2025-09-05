@@ -7,26 +7,21 @@
 
  */
 
-import type { Configuration } from './configuration';
 import type { AxiosInstance, AxiosPromise, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
+import type { RequestArgs } from './base';
+import { BASE_PATH, BaseAPI, operationServerMap } from './base';
 // Some imports not used depending on template conditions
-// @ts-ignore
 import {
   assertParamExists,
   createRequestFunction,
   DUMMY_BASE_URL,
   serializeDataIfNeeded,
   setApiKeyToObject,
-  setBasicAuthToObject,
-  setBearerAuthToObject,
-  setOAuthToObject,
   setSearchParams,
   toPathString,
 } from './common';
-import type { RequestArgs } from './base';
-// @ts-ignore
-import { BASE_PATH, BaseAPI, COLLECTION_FORMATS, operationServerMap, RequiredError } from './base';
+import type { Configuration } from './configuration';
 
 /**
  *
@@ -2349,255 +2344,244 @@ export interface WhoAmIOut {
 /**
  * APIKeyApi - axios parameter creator
  */
-export const APIKeyApiAxiosParamCreator = function (configuration?: Configuration) {
-  return {
-    /**
-     * Create API Key - Generate a new API key
-     * @param {CreateApiKeyIn} createApiKeyIn API key configuration
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1CreateApiKey: async (
-      createApiKeyIn: CreateApiKeyIn,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'createApiKeyIn' is not null or undefined
-      assertParamExists('v1CreateApiKey', 'createApiKeyIn', createApiKeyIn);
-      const localVarPath = `/v1-create-api-key`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const APIKeyApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   * Create API Key - Generate a new API key
+   * @param {CreateApiKeyIn} createApiKeyIn API key configuration
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1CreateApiKey: async (createApiKeyIn: CreateApiKeyIn, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+    // verify required parameter 'createApiKeyIn' is not null or undefined
+    assertParamExists('v1CreateApiKey', 'createApiKeyIn', createApiKeyIn);
+    const localVarPath = `/v1-create-api-key`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+    localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-      localVarRequestOptions.data = serializeDataIfNeeded(createApiKeyIn, localVarRequestOptions, configuration);
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    localVarRequestOptions.data = serializeDataIfNeeded(createApiKeyIn, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Delete API Key - Remove an API key permanently
-     * @param {DeleteApiKeyIn} deleteApiKeyIn API key to delete
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1DeleteApiKey: async (
-      deleteApiKeyIn: DeleteApiKeyIn,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'deleteApiKeyIn' is not null or undefined
-      assertParamExists('v1DeleteApiKey', 'deleteApiKeyIn', deleteApiKeyIn);
-      const localVarPath = `/v1-delete-api-key`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Delete API Key - Remove an API key permanently
+   * @param {DeleteApiKeyIn} deleteApiKeyIn API key to delete
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1DeleteApiKey: async (deleteApiKeyIn: DeleteApiKeyIn, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+    // verify required parameter 'deleteApiKeyIn' is not null or undefined
+    assertParamExists('v1DeleteApiKey', 'deleteApiKeyIn', deleteApiKeyIn);
+    const localVarPath = `/v1-delete-api-key`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+    localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-      localVarRequestOptions.data = serializeDataIfNeeded(deleteApiKeyIn, localVarRequestOptions, configuration);
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    localVarRequestOptions.data = serializeDataIfNeeded(deleteApiKeyIn, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Get API Key Details - Retrieve details of a specific API key
-     * @param {GetApiKeyDetailsIn} getApiKeyDetailsIn Request body with API key ID
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetApiKeyDetails: async (
-      getApiKeyDetailsIn: GetApiKeyDetailsIn,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'getApiKeyDetailsIn' is not null or undefined
-      assertParamExists('v1GetApiKeyDetails', 'getApiKeyDetailsIn', getApiKeyDetailsIn);
-      const localVarPath = `/v1-get-api-key-details`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Get API Key Details - Retrieve details of a specific API key
+   * @param {GetApiKeyDetailsIn} getApiKeyDetailsIn Request body with API key ID
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetApiKeyDetails: async (
+    getApiKeyDetailsIn: GetApiKeyDetailsIn,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'getApiKeyDetailsIn' is not null or undefined
+    assertParamExists('v1GetApiKeyDetails', 'getApiKeyDetailsIn', getApiKeyDetailsIn);
+    const localVarPath = `/v1-get-api-key-details`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+    localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-      localVarRequestOptions.data = serializeDataIfNeeded(getApiKeyDetailsIn, localVarRequestOptions, configuration);
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    localVarRequestOptions.data = serializeDataIfNeeded(getApiKeyDetailsIn, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Who Am I - Get current user information
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetWhoAmI: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-      const localVarPath = `/v1-who-am-i`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Who Am I - Get current user information
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetWhoAmI: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+    const localVarPath = `/v1-who-am-i`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * List API Keys - Retrieve user\'s API keys
-     * @param {ListApiKeysIn} listApiKeysIn Request body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1ListApiKeys: async (listApiKeysIn: ListApiKeysIn, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-      // verify required parameter 'listApiKeysIn' is not null or undefined
-      assertParamExists('v1ListApiKeys', 'listApiKeysIn', listApiKeysIn);
-      const localVarPath = `/v1-list-api-keys`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * List API Keys - Retrieve user\'s API keys
+   * @param {ListApiKeysIn} listApiKeysIn Request body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1ListApiKeys: async (listApiKeysIn: ListApiKeysIn, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+    // verify required parameter 'listApiKeysIn' is not null or undefined
+    assertParamExists('v1ListApiKeys', 'listApiKeysIn', listApiKeysIn);
+    const localVarPath = `/v1-list-api-keys`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+    localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-      localVarRequestOptions.data = serializeDataIfNeeded(listApiKeysIn, localVarRequestOptions, configuration);
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    localVarRequestOptions.data = serializeDataIfNeeded(listApiKeysIn, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Update API Key - Modify an existing API key
-     * @param {UpdateApiKeyIn} updateApiKeyIn Updated API key configuration
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1UpdateApiKey: async (
-      updateApiKeyIn: UpdateApiKeyIn,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'updateApiKeyIn' is not null or undefined
-      assertParamExists('v1UpdateApiKey', 'updateApiKeyIn', updateApiKeyIn);
-      const localVarPath = `/v1-update-api-key`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Update API Key - Modify an existing API key
+   * @param {UpdateApiKeyIn} updateApiKeyIn Updated API key configuration
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1UpdateApiKey: async (updateApiKeyIn: UpdateApiKeyIn, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+    // verify required parameter 'updateApiKeyIn' is not null or undefined
+    assertParamExists('v1UpdateApiKey', 'updateApiKeyIn', updateApiKeyIn);
+    const localVarPath = `/v1-update-api-key`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+    localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-      localVarRequestOptions.data = serializeDataIfNeeded(updateApiKeyIn, localVarRequestOptions, configuration);
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    localVarRequestOptions.data = serializeDataIfNeeded(updateApiKeyIn, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * APIKeyApi - functional programming interface
  */
-export const APIKeyApiFp = function (configuration?: Configuration) {
+export const APIKeyApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = APIKeyApiAxiosParamCreator(configuration);
   return {
     /**
@@ -2736,7 +2720,7 @@ export const APIKeyApiFp = function (configuration?: Configuration) {
 /**
  * APIKeyApi - factory interface
  */
-export const APIKeyApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const APIKeyApiFactory = (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
   const localVarFp = APIKeyApiFp(configuration);
   return {
     /**
@@ -2949,127 +2933,125 @@ export class APIKeyApi extends BaseAPI {
 /**
  * APIUsageApi - axios parameter creator
  */
-export const APIUsageApiAxiosParamCreator = function (configuration?: Configuration) {
-  return {
-    /**
-     * Get API Usage - Retrieve API usage statistics
-     * @param {string} [from] Start date for usage period (ISO 8601 format) - eg: 2024-01-01
-     * @param {string} [to] End date for usage period (ISO 8601 format) - eg: 2024-01-31
-     * @param {string} [service] Filter by specific service name - eg: currency, country, ip
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetApiUsage: async (
-      from?: string,
-      to?: string,
-      service?: string,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-get-api-usage`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const APIUsageApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   * Get API Usage - Retrieve API usage statistics
+   * @param {string} [from] Start date for usage period (ISO 8601 format) - eg: 2024-01-01
+   * @param {string} [to] End date for usage period (ISO 8601 format) - eg: 2024-01-31
+   * @param {string} [service] Filter by specific service name - eg: currency, country, ip
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetApiUsage: async (
+    from?: string,
+    to?: string,
+    service?: string,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/v1-get-api-usage`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (from !== undefined) {
-        localVarQueryParameter['from'] = from;
-      }
+    if (from !== undefined) {
+      localVarQueryParameter.from = from;
+    }
 
-      if (to !== undefined) {
-        localVarQueryParameter['to'] = to;
-      }
+    if (to !== undefined) {
+      localVarQueryParameter.to = to;
+    }
 
-      if (service !== undefined) {
-        localVarQueryParameter['service'] = service;
-      }
+    if (service !== undefined) {
+      localVarQueryParameter.service = service;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Download API Usage - Export API usage data as CSV
-     * @param {string} [from] Start date for usage period (ISO 8601 format) - eg: 2024-01-01
-     * @param {string} [to] End date for usage period (ISO 8601 format) - eg: 2024-01-31
-     * @param {string} [service] Filter by specific service name - eg: currency, country, ip
-     * @param {string} [format] Export format csv,json, default: csv
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetDownloadApiUsage: async (
-      from?: string,
-      to?: string,
-      service?: string,
-      format?: string,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-download-api-usage`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Download API Usage - Export API usage data as CSV
+   * @param {string} [from] Start date for usage period (ISO 8601 format) - eg: 2024-01-01
+   * @param {string} [to] End date for usage period (ISO 8601 format) - eg: 2024-01-31
+   * @param {string} [service] Filter by specific service name - eg: currency, country, ip
+   * @param {string} [format] Export format csv,json, default: csv
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetDownloadApiUsage: async (
+    from?: string,
+    to?: string,
+    service?: string,
+    format?: string,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/v1-download-api-usage`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (from !== undefined) {
-        localVarQueryParameter['from'] = from;
-      }
+    if (from !== undefined) {
+      localVarQueryParameter.from = from;
+    }
 
-      if (to !== undefined) {
-        localVarQueryParameter['to'] = to;
-      }
+    if (to !== undefined) {
+      localVarQueryParameter.to = to;
+    }
 
-      if (service !== undefined) {
-        localVarQueryParameter['service'] = service;
-      }
+    if (service !== undefined) {
+      localVarQueryParameter.service = service;
+    }
 
-      if (format !== undefined) {
-        localVarQueryParameter['format'] = format;
-      }
+    if (format !== undefined) {
+      localVarQueryParameter.format = format;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * APIUsageApi - functional programming interface
  */
-export const APIUsageApiFp = function (configuration?: Configuration) {
+export const APIUsageApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = APIUsageApiAxiosParamCreator(configuration);
   return {
     /**
@@ -3138,7 +3120,7 @@ export const APIUsageApiFp = function (configuration?: Configuration) {
 /**
  * APIUsageApi - factory interface
  */
-export const APIUsageApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const APIUsageApiFactory = (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
   const localVarFp = APIUsageApiFp(configuration);
   return {
     /**
@@ -3264,317 +3246,315 @@ export class APIUsageApi extends BaseAPI {
 /**
  * CountryApi - axios parameter creator
  */
-export const CountryApiAxiosParamCreator = function (configuration?: Configuration) {
-  return {
-    /**
-     * Get City Details - Retrieve detailed information about a specific city
-     * @param {number} [id] City ID
-     * @param {string} [name] City name (must be exact match)
-     * @param {string} [countryCode] Country code (2 letter ISO code) - eg: US, GB
-     * @param {string} [stateCode] State/Province code - eg: CA, NY
-     * @param {Array<string>} [expand] Fields to include in response - eg: [\&quot;name\&quot;, \&quot;countryName\&quot;, \&quot;stateName\&quot;]
-     * @param {Array<string>} [exclude] Fields to exclude from response - eg: [\&quot;countryId\&quot;, \&quot;stateId\&quot;]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetCityDetails: async (
-      id?: number,
-      name?: string,
-      countryCode?: string,
-      stateCode?: string,
-      expand?: Array<string>,
-      exclude?: Array<string>,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-get-city-details`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const CountryApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   * Get City Details - Retrieve detailed information about a specific city
+   * @param {number} [id] City ID
+   * @param {string} [name] City name (must be exact match)
+   * @param {string} [countryCode] Country code (2 letter ISO code) - eg: US, GB
+   * @param {string} [stateCode] State/Province code - eg: CA, NY
+   * @param {Array<string>} [expand] Fields to include in response - eg: [\&quot;name\&quot;, \&quot;countryName\&quot;, \&quot;stateName\&quot;]
+   * @param {Array<string>} [exclude] Fields to exclude from response - eg: [\&quot;countryId\&quot;, \&quot;stateId\&quot;]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetCityDetails: async (
+    id?: number,
+    name?: string,
+    countryCode?: string,
+    stateCode?: string,
+    expand?: Array<string>,
+    exclude?: Array<string>,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/v1-get-city-details`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (id !== undefined) {
-        localVarQueryParameter['id'] = id;
-      }
+    if (id !== undefined) {
+      localVarQueryParameter.id = id;
+    }
 
-      if (name !== undefined) {
-        localVarQueryParameter['name'] = name;
-      }
+    if (name !== undefined) {
+      localVarQueryParameter.name = name;
+    }
 
-      if (countryCode !== undefined) {
-        localVarQueryParameter['countryCode'] = countryCode;
-      }
+    if (countryCode !== undefined) {
+      localVarQueryParameter.countryCode = countryCode;
+    }
 
-      if (stateCode !== undefined) {
-        localVarQueryParameter['stateCode'] = stateCode;
-      }
+    if (stateCode !== undefined) {
+      localVarQueryParameter.stateCode = stateCode;
+    }
 
-      if (expand) {
-        localVarQueryParameter['expand'] = expand;
-      }
+    if (expand) {
+      localVarQueryParameter.expand = expand;
+    }
 
-      if (exclude) {
-        localVarQueryParameter['exclude'] = exclude;
-      }
+    if (exclude) {
+      localVarQueryParameter.exclude = exclude;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Get Country Details - Retrieve detailed information about a specific country
-     * @param {string} code Country code (2 or 3 letter ISO code) - eg: US, USA
-     * @param {Array<string>} [expand] Fields to include in response - eg: [\&quot;name\&quot;, \&quot;capital\&quot;, \&quot;currencies\&quot;, \&quot;languages\&quot;]
-     * @param {Array<string>} [exclude] Fields to exclude from response - eg: [\&quot;translations\&quot;, \&quot;demonyms\&quot;]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetCountryDetails: async (
-      code: string,
-      expand?: Array<string>,
-      exclude?: Array<string>,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'code' is not null or undefined
-      assertParamExists('v1GetCountryDetails', 'code', code);
-      const localVarPath = `/v1-get-country-details`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Get Country Details - Retrieve detailed information about a specific country
+   * @param {string} code Country code (2 or 3 letter ISO code) - eg: US, USA
+   * @param {Array<string>} [expand] Fields to include in response - eg: [\&quot;name\&quot;, \&quot;capital\&quot;, \&quot;currencies\&quot;, \&quot;languages\&quot;]
+   * @param {Array<string>} [exclude] Fields to exclude from response - eg: [\&quot;translations\&quot;, \&quot;demonyms\&quot;]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetCountryDetails: async (
+    code: string,
+    expand?: Array<string>,
+    exclude?: Array<string>,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'code' is not null or undefined
+    assertParamExists('v1GetCountryDetails', 'code', code);
+    const localVarPath = `/v1-get-country-details`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (code !== undefined) {
-        localVarQueryParameter['code'] = code;
-      }
+    if (code !== undefined) {
+      localVarQueryParameter.code = code;
+    }
 
-      if (expand) {
-        localVarQueryParameter['expand'] = expand;
-      }
+    if (expand) {
+      localVarQueryParameter.expand = expand;
+    }
 
-      if (exclude) {
-        localVarQueryParameter['exclude'] = exclude;
-      }
+    if (exclude) {
+      localVarQueryParameter.exclude = exclude;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Get Factbook Details - Retrieve detailed CIA World Factbook information for a country
-     * @param {string} code Country code (2 or 3 letter ISO code) - eg: US, USA
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetFactbookDetails: async (code: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-      // verify required parameter 'code' is not null or undefined
-      assertParamExists('v1GetFactbookDetails', 'code', code);
-      const localVarPath = `/v1-get-factbook-details`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Get Factbook Details - Retrieve detailed CIA World Factbook information for a country
+   * @param {string} code Country code (2 or 3 letter ISO code) - eg: US, USA
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetFactbookDetails: async (code: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+    // verify required parameter 'code' is not null or undefined
+    assertParamExists('v1GetFactbookDetails', 'code', code);
+    const localVarPath = `/v1-get-factbook-details`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (code !== undefined) {
-        localVarQueryParameter['code'] = code;
-      }
+    if (code !== undefined) {
+      localVarQueryParameter.code = code;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * List Cities - Search and retrieve cities by name and country
-     * @param {string} [name] City name to search for (partial match supported)
-     * @param {Array<string>} [country] Filter by country codes (2 letter ISO codes) - eg: [\&quot;US\&quot;, \&quot;GB\&quot;, \&quot;CA\&quot;]
-     * @param {Array<string>} [sort] Sort fields (prefix with - for descending) - eg: [\&quot;name\&quot;, \&quot;-population\&quot;]
-     * @param {number} [page] Page number for pagination - Default: 1
-     * @param {number} [pageSize] Number of items per page - Default: 20
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1ListCities: async (
-      name?: string,
-      country?: Array<string>,
-      sort?: Array<string>,
-      page?: number,
-      pageSize?: number,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-list-cities`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * List Cities - Search and retrieve cities by name and country
+   * @param {string} [name] City name to search for (partial match supported)
+   * @param {Array<string>} [country] Filter by country codes (2 letter ISO codes) - eg: [\&quot;US\&quot;, \&quot;GB\&quot;, \&quot;CA\&quot;]
+   * @param {Array<string>} [sort] Sort fields (prefix with - for descending) - eg: [\&quot;name\&quot;, \&quot;-population\&quot;]
+   * @param {number} [page] Page number for pagination - Default: 1
+   * @param {number} [pageSize] Number of items per page - Default: 20
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1ListCities: async (
+    name?: string,
+    country?: Array<string>,
+    sort?: Array<string>,
+    page?: number,
+    pageSize?: number,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/v1-list-cities`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (name !== undefined) {
-        localVarQueryParameter['name'] = name;
-      }
+    if (name !== undefined) {
+      localVarQueryParameter.name = name;
+    }
 
-      if (country) {
-        localVarQueryParameter['country'] = country;
-      }
+    if (country) {
+      localVarQueryParameter.country = country;
+    }
 
-      if (sort) {
-        localVarQueryParameter['sort'] = sort;
-      }
+    if (sort) {
+      localVarQueryParameter.sort = sort;
+    }
 
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page;
-      }
+    if (page !== undefined) {
+      localVarQueryParameter.page = page;
+    }
 
-      if (pageSize !== undefined) {
-        localVarQueryParameter['pageSize'] = pageSize;
-      }
+    if (pageSize !== undefined) {
+      localVarQueryParameter.pageSize = pageSize;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * List Countries - Retrieve a searchable list of countries with filtering options
-     * @param {Array<string>} [code] Filter by country codes (2 or 3 letter ISO codes) - eg: [\&quot;US\&quot;, \&quot;GB\&quot;, \&quot;FR\&quot;]
-     * @param {Array<string>} [expand] Fields to include in response - eg: [\&quot;name\&quot;, \&quot;capital\&quot;, \&quot;currencies\&quot;]
-     * @param {Array<string>} [exclude] Fields to exclude from response - eg: [\&quot;translations\&quot;, \&quot;demonyms\&quot;]
-     * @param {Array<string>} [sort] Sort fields (prefix with - for descending) - eg: [\&quot;name\&quot;, \&quot;-population\&quot;]
-     * @param {number} [page] Page number for pagination - Default: 1
-     * @param {number} [pageSize] Number of items per page - Default: 20
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1ListCountries: async (
-      code?: Array<string>,
-      expand?: Array<string>,
-      exclude?: Array<string>,
-      sort?: Array<string>,
-      page?: number,
-      pageSize?: number,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-list-countries`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * List Countries - Retrieve a searchable list of countries with filtering options
+   * @param {Array<string>} [code] Filter by country codes (2 or 3 letter ISO codes) - eg: [\&quot;US\&quot;, \&quot;GB\&quot;, \&quot;FR\&quot;]
+   * @param {Array<string>} [expand] Fields to include in response - eg: [\&quot;name\&quot;, \&quot;capital\&quot;, \&quot;currencies\&quot;]
+   * @param {Array<string>} [exclude] Fields to exclude from response - eg: [\&quot;translations\&quot;, \&quot;demonyms\&quot;]
+   * @param {Array<string>} [sort] Sort fields (prefix with - for descending) - eg: [\&quot;name\&quot;, \&quot;-population\&quot;]
+   * @param {number} [page] Page number for pagination - Default: 1
+   * @param {number} [pageSize] Number of items per page - Default: 20
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1ListCountries: async (
+    code?: Array<string>,
+    expand?: Array<string>,
+    exclude?: Array<string>,
+    sort?: Array<string>,
+    page?: number,
+    pageSize?: number,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/v1-list-countries`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (code) {
-        localVarQueryParameter['code'] = code;
-      }
+    if (code) {
+      localVarQueryParameter.code = code;
+    }
 
-      if (expand) {
-        localVarQueryParameter['expand'] = expand;
-      }
+    if (expand) {
+      localVarQueryParameter.expand = expand;
+    }
 
-      if (exclude) {
-        localVarQueryParameter['exclude'] = exclude;
-      }
+    if (exclude) {
+      localVarQueryParameter.exclude = exclude;
+    }
 
-      if (sort) {
-        localVarQueryParameter['sort'] = sort;
-      }
+    if (sort) {
+      localVarQueryParameter.sort = sort;
+    }
 
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page;
-      }
+    if (page !== undefined) {
+      localVarQueryParameter.page = page;
+    }
 
-      if (pageSize !== undefined) {
-        localVarQueryParameter['pageSize'] = pageSize;
-      }
+    if (pageSize !== undefined) {
+      localVarQueryParameter.pageSize = pageSize;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * CountryApi - functional programming interface
  */
-export const CountryApiFp = function (configuration?: Configuration) {
+export const CountryApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = CountryApiAxiosParamCreator(configuration);
   return {
     /**
@@ -3748,7 +3728,7 @@ export const CountryApiFp = function (configuration?: Configuration) {
 /**
  * CountryApi - factory interface
  */
-export const CountryApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const CountryApiFactory = (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
   const localVarFp = CountryApiFp(configuration);
   return {
     /**
@@ -4071,257 +4051,255 @@ export class CountryApi extends BaseAPI {
 /**
  * CurrencyApi - axios parameter creator
  */
-export const CurrencyApiAxiosParamCreator = function (configuration?: Configuration) {
-  return {
-    /**
-     * Converts an amount from one currency to another using real-time exchange rates. Supports multiple data providers with automatic fallback.
-     * @param {number} [amount] Amount to convert (defaults to 1) - optional
-     * @param {string} [from] Source currency code (3 letters, e.g., USD) - required
-     * @param {string} [to] Target currency code (3 letters, e.g., EUR) - required
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1ConvertCurrency: async (
-      amount?: number,
-      from?: string,
-      to?: string,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-convert-currency`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const CurrencyApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   * Converts an amount from one currency to another using real-time exchange rates. Supports multiple data providers with automatic fallback.
+   * @param {number} [amount] Amount to convert (defaults to 1) - optional
+   * @param {string} [from] Source currency code (3 letters, e.g., USD) - required
+   * @param {string} [to] Target currency code (3 letters, e.g., EUR) - required
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1ConvertCurrency: async (
+    amount?: number,
+    from?: string,
+    to?: string,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/v1-convert-currency`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (amount !== undefined) {
-        localVarQueryParameter['amount'] = amount;
-      }
+    if (amount !== undefined) {
+      localVarQueryParameter.amount = amount;
+    }
 
-      if (from !== undefined) {
-        localVarQueryParameter['from'] = from;
-      }
+    if (from !== undefined) {
+      localVarQueryParameter.from = from;
+    }
 
-      if (to !== undefined) {
-        localVarQueryParameter['to'] = to;
-      }
+    if (to !== undefined) {
+      localVarQueryParameter.to = to;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Get Currency Details - Retrieve detailed information about a specific currency
-     * @param {string} code Currency code (3-letter ISO code) - eg: USD, EUR, BTC
-     * @param {Array<string>} [expand] Fields to expand in response - eg: [\&quot;symbol\&quot;, \&quot;country\&quot;, \&quot;decimal\&quot;]
-     * @param {Array<string>} [exclude] Fields to exclude from response
-     * @param {Array<string>} [language] Language codes for localized names - eg: [\&quot;en\&quot;, \&quot;es\&quot;, \&quot;fr\&quot;]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetCurrencyDetails: async (
-      code: string,
-      expand?: Array<string>,
-      exclude?: Array<string>,
-      language?: Array<string>,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'code' is not null or undefined
-      assertParamExists('v1GetCurrencyDetails', 'code', code);
-      const localVarPath = `/v1-get-currency-details`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Get Currency Details - Retrieve detailed information about a specific currency
+   * @param {string} code Currency code (3-letter ISO code) - eg: USD, EUR, BTC
+   * @param {Array<string>} [expand] Fields to expand in response - eg: [\&quot;symbol\&quot;, \&quot;country\&quot;, \&quot;decimal\&quot;]
+   * @param {Array<string>} [exclude] Fields to exclude from response
+   * @param {Array<string>} [language] Language codes for localized names - eg: [\&quot;en\&quot;, \&quot;es\&quot;, \&quot;fr\&quot;]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetCurrencyDetails: async (
+    code: string,
+    expand?: Array<string>,
+    exclude?: Array<string>,
+    language?: Array<string>,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'code' is not null or undefined
+    assertParamExists('v1GetCurrencyDetails', 'code', code);
+    const localVarPath = `/v1-get-currency-details`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (code !== undefined) {
-        localVarQueryParameter['code'] = code;
-      }
+    if (code !== undefined) {
+      localVarQueryParameter.code = code;
+    }
 
-      if (expand) {
-        localVarQueryParameter['expand'] = expand;
-      }
+    if (expand) {
+      localVarQueryParameter.expand = expand;
+    }
 
-      if (exclude) {
-        localVarQueryParameter['exclude'] = exclude;
-      }
+    if (exclude) {
+      localVarQueryParameter.exclude = exclude;
+    }
 
-      if (language) {
-        localVarQueryParameter['language'] = language;
-      }
+    if (language) {
+      localVarQueryParameter.language = language;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Get Currency Exchange Rate - Retrieve real-time exchange rate between two currencies
-     * @param {string} from Source currency code (3-letter ISO code) - eg: USD, EUR, GBP
-     * @param {string} to Target currency code (3-letter ISO code) - eg: JPY, CAD, AUD
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetCurrencyExchangeRate: async (
-      from: string,
-      to: string,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'from' is not null or undefined
-      assertParamExists('v1GetCurrencyExchangeRate', 'from', from);
-      // verify required parameter 'to' is not null or undefined
-      assertParamExists('v1GetCurrencyExchangeRate', 'to', to);
-      const localVarPath = `/v1-get-currency-exchange-rate`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Get Currency Exchange Rate - Retrieve real-time exchange rate between two currencies
+   * @param {string} from Source currency code (3-letter ISO code) - eg: USD, EUR, GBP
+   * @param {string} to Target currency code (3-letter ISO code) - eg: JPY, CAD, AUD
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetCurrencyExchangeRate: async (
+    from: string,
+    to: string,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'from' is not null or undefined
+    assertParamExists('v1GetCurrencyExchangeRate', 'from', from);
+    // verify required parameter 'to' is not null or undefined
+    assertParamExists('v1GetCurrencyExchangeRate', 'to', to);
+    const localVarPath = `/v1-get-currency-exchange-rate`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (from !== undefined) {
-        localVarQueryParameter['from'] = from;
-      }
+    if (from !== undefined) {
+      localVarQueryParameter.from = from;
+    }
 
-      if (to !== undefined) {
-        localVarQueryParameter['to'] = to;
-      }
+    if (to !== undefined) {
+      localVarQueryParameter.to = to;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * List Currencies - Retrieve a paginated list of available currencies
-     * @param {Array<string>} [code] Filter by specific currency codes - eg: [\&quot;USD\&quot;, \&quot;EUR\&quot;, \&quot;GBP\&quot;]
-     * @param {Array<string>} [expand] Fields to include in response - eg: [\&quot;symbol\&quot;, \&quot;country\&quot;, \&quot;decimal\&quot;, \&quot;banknotes\&quot;, \&quot;coins\&quot;]
-     * @param {Array<string>} [exclude] Fields to exclude from response - eg: [\&quot;banknotes\&quot;, \&quot;coins\&quot;]
-     * @param {Array<string>} [language] Language codes for localized names - eg: [\&quot;en\&quot;, \&quot;es\&quot;, \&quot;fr\&quot;]
-     * @param {Array<string>} [sort] Sort fields (prefix with - for descending) - eg: [\&quot;code\&quot;, \&quot;-name\&quot;]
-     * @param {number} [page] Page number for pagination - Default: 1
-     * @param {number} [pageSize] Number of items per page (max: 500) - Default: 300
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1ListCurrencies: async (
-      code?: Array<string>,
-      expand?: Array<string>,
-      exclude?: Array<string>,
-      language?: Array<string>,
-      sort?: Array<string>,
-      page?: number,
-      pageSize?: number,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-list-currencies`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * List Currencies - Retrieve a paginated list of available currencies
+   * @param {Array<string>} [code] Filter by specific currency codes - eg: [\&quot;USD\&quot;, \&quot;EUR\&quot;, \&quot;GBP\&quot;]
+   * @param {Array<string>} [expand] Fields to include in response - eg: [\&quot;symbol\&quot;, \&quot;country\&quot;, \&quot;decimal\&quot;, \&quot;banknotes\&quot;, \&quot;coins\&quot;]
+   * @param {Array<string>} [exclude] Fields to exclude from response - eg: [\&quot;banknotes\&quot;, \&quot;coins\&quot;]
+   * @param {Array<string>} [language] Language codes for localized names - eg: [\&quot;en\&quot;, \&quot;es\&quot;, \&quot;fr\&quot;]
+   * @param {Array<string>} [sort] Sort fields (prefix with - for descending) - eg: [\&quot;code\&quot;, \&quot;-name\&quot;]
+   * @param {number} [page] Page number for pagination - Default: 1
+   * @param {number} [pageSize] Number of items per page (max: 500) - Default: 300
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1ListCurrencies: async (
+    code?: Array<string>,
+    expand?: Array<string>,
+    exclude?: Array<string>,
+    language?: Array<string>,
+    sort?: Array<string>,
+    page?: number,
+    pageSize?: number,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/v1-list-currencies`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (code) {
-        localVarQueryParameter['code'] = code;
-      }
+    if (code) {
+      localVarQueryParameter.code = code;
+    }
 
-      if (expand) {
-        localVarQueryParameter['expand'] = expand;
-      }
+    if (expand) {
+      localVarQueryParameter.expand = expand;
+    }
 
-      if (exclude) {
-        localVarQueryParameter['exclude'] = exclude;
-      }
+    if (exclude) {
+      localVarQueryParameter.exclude = exclude;
+    }
 
-      if (language) {
-        localVarQueryParameter['language'] = language;
-      }
+    if (language) {
+      localVarQueryParameter.language = language;
+    }
 
-      if (sort) {
-        localVarQueryParameter['sort'] = sort;
-      }
+    if (sort) {
+      localVarQueryParameter.sort = sort;
+    }
 
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page;
-      }
+    if (page !== undefined) {
+      localVarQueryParameter.page = page;
+    }
 
-      if (pageSize !== undefined) {
-        localVarQueryParameter['pageSize'] = pageSize;
-      }
+    if (pageSize !== undefined) {
+      localVarQueryParameter.pageSize = pageSize;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * CurrencyApi - functional programming interface
  */
-export const CurrencyApiFp = function (configuration?: Configuration) {
+export const CurrencyApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = CurrencyApiAxiosParamCreator(configuration);
   return {
     /**
@@ -4457,7 +4435,7 @@ export const CurrencyApiFp = function (configuration?: Configuration) {
 /**
  * CurrencyApi - factory interface
  */
-export const CurrencyApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const CurrencyApiFactory = (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
   const localVarFp = CurrencyApiFp(configuration);
   return {
     /**
@@ -4714,109 +4692,107 @@ export class CurrencyApi extends BaseAPI {
 /**
  * DomainToolsApi - axios parameter creator
  */
-export const DomainToolsApiAxiosParamCreator = function (configuration?: Configuration) {
-  return {
-    /**
-     * Retrieves WHOIS information for a given domain, with optional JSON parsing and caching control
-     * @param {string} [domain] Domain name to query - required
-     * @param {V1GetDomainWhoisParseWhoisToJsonEnum} [parseWhoisToJson] Parse WHOIS text to JSON format - optional
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetDomainWhois: async (
-      domain?: string,
-      parseWhoisToJson?: V1GetDomainWhoisParseWhoisToJsonEnum,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-get-domain-whois`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const DomainToolsApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   * Retrieves WHOIS information for a given domain, with optional JSON parsing and caching control
+   * @param {string} [domain] Domain name to query - required
+   * @param {V1GetDomainWhoisParseWhoisToJsonEnum} [parseWhoisToJson] Parse WHOIS text to JSON format - optional
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetDomainWhois: async (
+    domain?: string,
+    parseWhoisToJson?: V1GetDomainWhoisParseWhoisToJsonEnum,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/v1-get-domain-whois`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (domain !== undefined) {
-        localVarQueryParameter['domain'] = domain;
-      }
+    if (domain !== undefined) {
+      localVarQueryParameter.domain = domain;
+    }
 
-      if (parseWhoisToJson !== undefined) {
-        localVarQueryParameter['parseWhoisToJson'] = parseWhoisToJson;
-      }
+    if (parseWhoisToJson !== undefined) {
+      localVarQueryParameter.parseWhoisToJson = parseWhoisToJson;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Performs DNS lookups for various record types (A, AAAA, CNAME, MX, etc.) with caching support
-     * @param {string} [address] Domain or URL to lookup - required
-     * @param {V1GetLookupDomainDnsTypeEnum} [type] DNS record type - required
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetLookupDomainDns: async (
-      address?: string,
-      type?: V1GetLookupDomainDnsTypeEnum,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-lookup-domain-dns`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Performs DNS lookups for various record types (A, AAAA, CNAME, MX, etc.) with caching support
+   * @param {string} [address] Domain or URL to lookup - required
+   * @param {V1GetLookupDomainDnsTypeEnum} [type] DNS record type - required
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetLookupDomainDns: async (
+    address?: string,
+    type?: V1GetLookupDomainDnsTypeEnum,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/v1-lookup-domain-dns`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (address !== undefined) {
-        localVarQueryParameter['address'] = address;
-      }
+    if (address !== undefined) {
+      localVarQueryParameter.address = address;
+    }
 
-      if (type !== undefined) {
-        localVarQueryParameter['type'] = type;
-      }
+    if (type !== undefined) {
+      localVarQueryParameter.type = type;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * DomainToolsApi - functional programming interface
  */
-export const DomainToolsApiFp = function (configuration?: Configuration) {
+export const DomainToolsApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = DomainToolsApiAxiosParamCreator(configuration);
   return {
     /**
@@ -4873,11 +4849,7 @@ export const DomainToolsApiFp = function (configuration?: Configuration) {
 /**
  * DomainToolsApi - factory interface
  */
-export const DomainToolsApiFactory = function (
-  configuration?: Configuration,
-  basePath?: string,
-  axios?: AxiosInstance,
-) {
+export const DomainToolsApiFactory = (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
   const localVarFp = DomainToolsApiFp(configuration);
   return {
     /**
@@ -5001,98 +4973,96 @@ export type V1GetLookupDomainDnsTypeEnum =
 /**
  * EmailApi - axios parameter creator
  */
-export const EmailApiAxiosParamCreator = function (configuration?: Configuration) {
-  return {
-    /**
-     * Get Email Details - Validate and verify email address
-     * @param {string} [email] Email address to validate
-     * @param {string} [verifyMx] Verify MX records
-     * @param {string} [verifySmtp] Verify SMTP connection
-     * @param {string} [detectName] Detect name from email address
-     * @param {string} [suggestDomain] Suggest domain corrections for typos
-     * @param {string} [checkDomainAge] Check domain age
-     * @param {string} [checkDomainRegistration] Check domain registration details
-     * @param {number} [timeout] Timeout in milliseconds (max: 10000)
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetEmailDetails: async (
-      email?: string,
-      verifyMx?: string,
-      verifySmtp?: string,
-      detectName?: string,
-      suggestDomain?: string,
-      checkDomainAge?: string,
-      checkDomainRegistration?: string,
-      timeout?: number,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-get-email-details`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const EmailApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   * Get Email Details - Validate and verify email address
+   * @param {string} [email] Email address to validate
+   * @param {string} [verifyMx] Verify MX records
+   * @param {string} [verifySmtp] Verify SMTP connection
+   * @param {string} [detectName] Detect name from email address
+   * @param {string} [suggestDomain] Suggest domain corrections for typos
+   * @param {string} [checkDomainAge] Check domain age
+   * @param {string} [checkDomainRegistration] Check domain registration details
+   * @param {number} [timeout] Timeout in milliseconds (max: 10000)
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetEmailDetails: async (
+    email?: string,
+    verifyMx?: string,
+    verifySmtp?: string,
+    detectName?: string,
+    suggestDomain?: string,
+    checkDomainAge?: string,
+    checkDomainRegistration?: string,
+    timeout?: number,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/v1-get-email-details`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (email !== undefined) {
-        localVarQueryParameter['email'] = email;
-      }
+    if (email !== undefined) {
+      localVarQueryParameter.email = email;
+    }
 
-      if (verifyMx !== undefined) {
-        localVarQueryParameter['verifyMx'] = verifyMx;
-      }
+    if (verifyMx !== undefined) {
+      localVarQueryParameter.verifyMx = verifyMx;
+    }
 
-      if (verifySmtp !== undefined) {
-        localVarQueryParameter['verifySmtp'] = verifySmtp;
-      }
+    if (verifySmtp !== undefined) {
+      localVarQueryParameter.verifySmtp = verifySmtp;
+    }
 
-      if (detectName !== undefined) {
-        localVarQueryParameter['detectName'] = detectName;
-      }
+    if (detectName !== undefined) {
+      localVarQueryParameter.detectName = detectName;
+    }
 
-      if (suggestDomain !== undefined) {
-        localVarQueryParameter['suggestDomain'] = suggestDomain;
-      }
+    if (suggestDomain !== undefined) {
+      localVarQueryParameter.suggestDomain = suggestDomain;
+    }
 
-      if (checkDomainAge !== undefined) {
-        localVarQueryParameter['checkDomainAge'] = checkDomainAge;
-      }
+    if (checkDomainAge !== undefined) {
+      localVarQueryParameter.checkDomainAge = checkDomainAge;
+    }
 
-      if (checkDomainRegistration !== undefined) {
-        localVarQueryParameter['checkDomainRegistration'] = checkDomainRegistration;
-      }
+    if (checkDomainRegistration !== undefined) {
+      localVarQueryParameter.checkDomainRegistration = checkDomainRegistration;
+    }
 
-      if (timeout !== undefined) {
-        localVarQueryParameter['timeout'] = timeout;
-      }
+    if (timeout !== undefined) {
+      localVarQueryParameter.timeout = timeout;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * EmailApi - functional programming interface
  */
-export const EmailApiFp = function (configuration?: Configuration) {
+export const EmailApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = EmailApiAxiosParamCreator(configuration);
   return {
     /**
@@ -5147,7 +5117,7 @@ export const EmailApiFp = function (configuration?: Configuration) {
 /**
  * EmailApi - factory interface
  */
-export const EmailApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const EmailApiFactory = (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
   const localVarFp = EmailApiFp(configuration);
   return {
     /**
@@ -5252,53 +5222,51 @@ export class EmailApi extends BaseAPI {
 /**
  * IPApi - axios parameter creator
  */
-export const IPApiAxiosParamCreator = function (configuration?: Configuration) {
-  return {
-    /**
-     * Retrieves comprehensive geolocation data including country, city, ASN, and ISP information. Default provider is configurable via IP_PROVIDER environment variable (defaults to \'maxmind\').
-     * @param {string} [ip] IP address to lookup (IPv4 or IPv6). If not provided, uses the request IP - optional
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetIpDetails: async (ip?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-      const localVarPath = `/v1-get-ip-details`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const IPApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   * Retrieves comprehensive geolocation data including country, city, ASN, and ISP information. Default provider is configurable via IP_PROVIDER environment variable (defaults to \'maxmind\').
+   * @param {string} [ip] IP address to lookup (IPv4 or IPv6). If not provided, uses the request IP - optional
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetIpDetails: async (ip?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+    const localVarPath = `/v1-get-ip-details`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (ip !== undefined) {
-        localVarQueryParameter['ip'] = ip;
-      }
+    if (ip !== undefined) {
+      localVarQueryParameter.ip = ip;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * IPApi - functional programming interface
  */
-export const IPApiFp = function (configuration?: Configuration) {
+export const IPApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = IPApiAxiosParamCreator(configuration);
   return {
     /**
@@ -5329,7 +5297,7 @@ export const IPApiFp = function (configuration?: Configuration) {
 /**
  * IPApi - factory interface
  */
-export const IPApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const IPApiFactory = (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
   const localVarFp = IPApiFp(configuration);
   return {
     /**
@@ -5377,211 +5345,209 @@ export class IPApi extends BaseAPI {
 /**
  * OneTimeURLApi - axios parameter creator
  */
-export const OneTimeURLApiAxiosParamCreator = function (configuration?: Configuration) {
-  return {
-    /**
-     * Creates a one-time URL that will self-destruct after being accessed or after the specified lifetime expires. Perfect for sharing sensitive information securely.
-     * @param {CreateOnetimeUrlIn} createOnetimeUrlIn One-time URL configuration
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1CreateOnetimeUrl: async (
-      createOnetimeUrlIn: CreateOnetimeUrlIn,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'createOnetimeUrlIn' is not null or undefined
-      assertParamExists('v1CreateOnetimeUrl', 'createOnetimeUrlIn', createOnetimeUrlIn);
-      const localVarPath = `/v1-create-onetime-url`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const OneTimeURLApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   * Creates a one-time URL that will self-destruct after being accessed or after the specified lifetime expires. Perfect for sharing sensitive information securely.
+   * @param {CreateOnetimeUrlIn} createOnetimeUrlIn One-time URL configuration
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1CreateOnetimeUrl: async (
+    createOnetimeUrlIn: CreateOnetimeUrlIn,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'createOnetimeUrlIn' is not null or undefined
+    assertParamExists('v1CreateOnetimeUrl', 'createOnetimeUrlIn', createOnetimeUrlIn);
+    const localVarPath = `/v1-create-onetime-url`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+    localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-      localVarRequestOptions.data = serializeDataIfNeeded(createOnetimeUrlIn, localVarRequestOptions, configuration);
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    localVarRequestOptions.data = serializeDataIfNeeded(createOnetimeUrlIn, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Deletes a one-time URL before it expires. Requires authentication or the correct passphrase.
-     * @param {DeleteOnetimeUrlIn} deleteOnetimeUrlIn Delete request parameters
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1DeleteOnetimeUrl: async (
-      deleteOnetimeUrlIn: DeleteOnetimeUrlIn,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'deleteOnetimeUrlIn' is not null or undefined
-      assertParamExists('v1DeleteOnetimeUrl', 'deleteOnetimeUrlIn', deleteOnetimeUrlIn);
-      const localVarPath = `/v1-delete-onetime-url`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Deletes a one-time URL before it expires. Requires authentication or the correct passphrase.
+   * @param {DeleteOnetimeUrlIn} deleteOnetimeUrlIn Delete request parameters
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1DeleteOnetimeUrl: async (
+    deleteOnetimeUrlIn: DeleteOnetimeUrlIn,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'deleteOnetimeUrlIn' is not null or undefined
+    assertParamExists('v1DeleteOnetimeUrl', 'deleteOnetimeUrlIn', deleteOnetimeUrlIn);
+    const localVarPath = `/v1-delete-onetime-url`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+    localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-      localVarRequestOptions.data = serializeDataIfNeeded(deleteOnetimeUrlIn, localVarRequestOptions, configuration);
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    localVarRequestOptions.data = serializeDataIfNeeded(deleteOnetimeUrlIn, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Get One-Time URL Details - Retrieve and consume a one-time URL
-     * @param {string} [sid] Short ID of the one-time URL
-     * @param {string} [id] Database ID of the one-time URL record
-     * @param {V1GetOnetimeUrlDetailsDomainEnum} [domain] Domain used for the one-time URL
-     * @param {string} [passphrase] Passphrase to access protected content
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetOnetimeUrlDetails: async (
-      sid?: string,
-      id?: string,
-      domain?: V1GetOnetimeUrlDetailsDomainEnum,
-      passphrase?: string,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-get-onetime-url-details`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Get One-Time URL Details - Retrieve and consume a one-time URL
+   * @param {string} [sid] Short ID of the one-time URL
+   * @param {string} [id] Database ID of the one-time URL record
+   * @param {V1GetOnetimeUrlDetailsDomainEnum} [domain] Domain used for the one-time URL
+   * @param {string} [passphrase] Passphrase to access protected content
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetOnetimeUrlDetails: async (
+    sid?: string,
+    id?: string,
+    domain?: V1GetOnetimeUrlDetailsDomainEnum,
+    passphrase?: string,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/v1-get-onetime-url-details`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (sid !== undefined) {
-        localVarQueryParameter['sid'] = sid;
-      }
+    if (sid !== undefined) {
+      localVarQueryParameter.sid = sid;
+    }
 
-      if (id !== undefined) {
-        localVarQueryParameter['_id'] = id;
-      }
+    if (id !== undefined) {
+      localVarQueryParameter._id = id;
+    }
 
-      if (domain !== undefined) {
-        localVarQueryParameter['domain'] = domain;
-      }
+    if (domain !== undefined) {
+      localVarQueryParameter.domain = domain;
+    }
 
-      if (passphrase !== undefined) {
-        localVarQueryParameter['passphrase'] = passphrase;
-      }
+    if (passphrase !== undefined) {
+      localVarQueryParameter.passphrase = passphrase;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * List One-Time URLs - Retrieve user\'s one-time URLs
-     * @param {Array<string>} [sort] Sort fields (prefix with - for descending) - eg: [\&quot;-createdAt\&quot;, \&quot;expireAt\&quot;]
-     * @param {number} [page] Page number for pagination - Default: 1
-     * @param {number} [pageSize] Number of items per page - Default: 200
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1ListOnetimeUrls: async (
-      sort?: Array<string>,
-      page?: number,
-      pageSize?: number,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-list-onetime-urls`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * List One-Time URLs - Retrieve user\'s one-time URLs
+   * @param {Array<string>} [sort] Sort fields (prefix with - for descending) - eg: [\&quot;-createdAt\&quot;, \&quot;expireAt\&quot;]
+   * @param {number} [page] Page number for pagination - Default: 1
+   * @param {number} [pageSize] Number of items per page - Default: 200
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1ListOnetimeUrls: async (
+    sort?: Array<string>,
+    page?: number,
+    pageSize?: number,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/v1-list-onetime-urls`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (sort) {
-        localVarQueryParameter['sort'] = sort;
-      }
+    if (sort) {
+      localVarQueryParameter.sort = sort;
+    }
 
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page;
-      }
+    if (page !== undefined) {
+      localVarQueryParameter.page = page;
+    }
 
-      if (pageSize !== undefined) {
-        localVarQueryParameter['pageSize'] = pageSize;
-      }
+    if (pageSize !== undefined) {
+      localVarQueryParameter.pageSize = pageSize;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * OneTimeURLApi - functional programming interface
  */
-export const OneTimeURLApiFp = function (configuration?: Configuration) {
+export const OneTimeURLApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = OneTimeURLApiAxiosParamCreator(configuration);
   return {
     /**
@@ -5694,7 +5660,7 @@ export const OneTimeURLApiFp = function (configuration?: Configuration) {
 /**
  * OneTimeURLApi - factory interface
  */
-export const OneTimeURLApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const OneTimeURLApiFactory = (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
   const localVarFp = OneTimeURLApiFp(configuration);
   return {
     /**
@@ -5911,53 +5877,51 @@ export type V1GetOnetimeUrlDetailsDomainEnum =
 /**
  * PhoneApi - axios parameter creator
  */
-export const PhoneApiAxiosParamCreator = function (configuration?: Configuration) {
-  return {
-    /**
-     * Get Phone Details - Validate and get phone number information
-     * @param {string} [phone] Phone number to validate (with or without + prefix)
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetPhoneDetails: async (phone?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-      const localVarPath = `/v1-get-phone-details`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const PhoneApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   * Get Phone Details - Validate and get phone number information
+   * @param {string} [phone] Phone number to validate (with or without + prefix)
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetPhoneDetails: async (phone?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+    const localVarPath = `/v1-get-phone-details`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (phone !== undefined) {
-        localVarQueryParameter['phone'] = phone;
-      }
+    if (phone !== undefined) {
+      localVarQueryParameter.phone = phone;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * PhoneApi - functional programming interface
  */
-export const PhoneApiFp = function (configuration?: Configuration) {
+export const PhoneApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = PhoneApiAxiosParamCreator(configuration);
   return {
     /**
@@ -5988,7 +5952,7 @@ export const PhoneApiFp = function (configuration?: Configuration) {
 /**
  * PhoneApi - factory interface
  */
-export const PhoneApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const PhoneApiFactory = (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
   const localVarFp = PhoneApiFp(configuration);
   return {
     /**
@@ -6036,408 +6000,393 @@ export class PhoneApi extends BaseAPI {
 /**
  * QRCodeApi - axios parameter creator
  */
-export const QRCodeApiAxiosParamCreator = function (configuration?: Configuration) {
-  return {
-    /**
-     * Create QR Code - Generate a new QR code
-     * @param {CreateQrCodeIn} createQrCodeIn QR code configuration
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1CreateQrCode: async (
-      createQrCodeIn: CreateQrCodeIn,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'createQrCodeIn' is not null or undefined
-      assertParamExists('v1CreateQrCode', 'createQrCodeIn', createQrCodeIn);
-      const localVarPath = `/v1-create-qr-code`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const QRCodeApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   * Create QR Code - Generate a new QR code
+   * @param {CreateQrCodeIn} createQrCodeIn QR code configuration
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1CreateQrCode: async (createQrCodeIn: CreateQrCodeIn, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+    // verify required parameter 'createQrCodeIn' is not null or undefined
+    assertParamExists('v1CreateQrCode', 'createQrCodeIn', createQrCodeIn);
+    const localVarPath = `/v1-create-qr-code`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+    localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-      localVarRequestOptions.data = serializeDataIfNeeded(createQrCodeIn, localVarRequestOptions, configuration);
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    localVarRequestOptions.data = serializeDataIfNeeded(createQrCodeIn, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Track QR View - Track when a QR code is viewed/scanned
-     * @param {string} sid Short ID of the QR code
-     * @param {TrackQrViewIn} [trackQrViewIn] Tracking data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1CreateTrackQrView: async (
-      sid: string,
-      trackQrViewIn?: TrackQrViewIn,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'sid' is not null or undefined
-      assertParamExists('v1CreateTrackQrView', 'sid', sid);
-      const localVarPath = `/v1-track-qr-view`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Track QR View - Track when a QR code is viewed/scanned
+   * @param {string} sid Short ID of the QR code
+   * @param {TrackQrViewIn} [trackQrViewIn] Tracking data
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1CreateTrackQrView: async (
+    sid: string,
+    trackQrViewIn?: TrackQrViewIn,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'sid' is not null or undefined
+    assertParamExists('v1CreateTrackQrView', 'sid', sid);
+    const localVarPath = `/v1-track-qr-view`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (sid !== undefined) {
-        localVarQueryParameter['sid'] = sid;
-      }
+    if (sid !== undefined) {
+      localVarQueryParameter.sid = sid;
+    }
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+    localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-      localVarRequestOptions.data = serializeDataIfNeeded(trackQrViewIn, localVarRequestOptions, configuration);
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    localVarRequestOptions.data = serializeDataIfNeeded(trackQrViewIn, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Delete QR Code - Permanently remove a QR code
-     * @param {DeleteQrCodeIn} deleteQrCodeIn Delete configuration
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1DeleteQrCode: async (
-      deleteQrCodeIn: DeleteQrCodeIn,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'deleteQrCodeIn' is not null or undefined
-      assertParamExists('v1DeleteQrCode', 'deleteQrCodeIn', deleteQrCodeIn);
-      const localVarPath = `/v1-delete-qr-code`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Delete QR Code - Permanently remove a QR code
+   * @param {DeleteQrCodeIn} deleteQrCodeIn Delete configuration
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1DeleteQrCode: async (deleteQrCodeIn: DeleteQrCodeIn, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+    // verify required parameter 'deleteQrCodeIn' is not null or undefined
+    assertParamExists('v1DeleteQrCode', 'deleteQrCodeIn', deleteQrCodeIn);
+    const localVarPath = `/v1-delete-qr-code`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+    localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-      localVarRequestOptions.data = serializeDataIfNeeded(deleteQrCodeIn, localVarRequestOptions, configuration);
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    localVarRequestOptions.data = serializeDataIfNeeded(deleteQrCodeIn, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Get QR Code Analytics - Retrieve detailed analytics for a QR code
-     * @param {string} [sid] Short ID of the QR code
-     * @param {string} [id] Database ID of the QR code
-     * @param {string} [from] Start date for analytics (ISO 8601)
-     * @param {string} [to] End date for analytics (ISO 8601)
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetQrCodeAnalytics: async (
-      sid?: string,
-      id?: string,
-      from?: string,
-      to?: string,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-get-qr-code-analytics`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Get QR Code Analytics - Retrieve detailed analytics for a QR code
+   * @param {string} [sid] Short ID of the QR code
+   * @param {string} [id] Database ID of the QR code
+   * @param {string} [from] Start date for analytics (ISO 8601)
+   * @param {string} [to] End date for analytics (ISO 8601)
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetQrCodeAnalytics: async (
+    sid?: string,
+    id?: string,
+    from?: string,
+    to?: string,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/v1-get-qr-code-analytics`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (sid !== undefined) {
-        localVarQueryParameter['sid'] = sid;
-      }
+    if (sid !== undefined) {
+      localVarQueryParameter.sid = sid;
+    }
 
-      if (id !== undefined) {
-        localVarQueryParameter['_id'] = id;
-      }
+    if (id !== undefined) {
+      localVarQueryParameter._id = id;
+    }
 
-      if (from !== undefined) {
-        localVarQueryParameter['from'] = from;
-      }
+    if (from !== undefined) {
+      localVarQueryParameter.from = from;
+    }
 
-      if (to !== undefined) {
-        localVarQueryParameter['to'] = to;
-      }
+    if (to !== undefined) {
+      localVarQueryParameter.to = to;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Get QR Code Details - Retrieve QR code information for UI
-     * @param {string} [sid] Short ID of the QR code
-     * @param {string} [id] Database ID of the QR code
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetQrCodeDetails: async (
-      sid?: string,
-      id?: string,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-get-qr-code-details`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Get QR Code Details - Retrieve QR code information for UI
+   * @param {string} [sid] Short ID of the QR code
+   * @param {string} [id] Database ID of the QR code
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetQrCodeDetails: async (sid?: string, id?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+    const localVarPath = `/v1-get-qr-code-details`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (sid !== undefined) {
-        localVarQueryParameter['sid'] = sid;
-      }
+    if (sid !== undefined) {
+      localVarQueryParameter.sid = sid;
+    }
 
-      if (id !== undefined) {
-        localVarQueryParameter['_id'] = id;
-      }
+    if (id !== undefined) {
+      localVarQueryParameter._id = id;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Get QR Code Preview - Generate a QR code preview as base64 image
-     * @param {PreviewQrCodeIn} previewQrCodeIn QR code configuration
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetQrCodePreview: async (
-      previewQrCodeIn: PreviewQrCodeIn,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'previewQrCodeIn' is not null or undefined
-      assertParamExists('v1GetQrCodePreview', 'previewQrCodeIn', previewQrCodeIn);
-      const localVarPath = `/v1-get-qr-code-preview`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Get QR Code Preview - Generate a QR code preview as base64 image
+   * @param {PreviewQrCodeIn} previewQrCodeIn QR code configuration
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetQrCodePreview: async (
+    previewQrCodeIn: PreviewQrCodeIn,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'previewQrCodeIn' is not null or undefined
+    assertParamExists('v1GetQrCodePreview', 'previewQrCodeIn', previewQrCodeIn);
+    const localVarPath = `/v1-get-qr-code-preview`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+    localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-      localVarRequestOptions.data = serializeDataIfNeeded(previewQrCodeIn, localVarRequestOptions, configuration);
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    localVarRequestOptions.data = serializeDataIfNeeded(previewQrCodeIn, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * List QR Codes - Get paginated list of user\'s QR codes
-     * @param {string} [page] Page number (default: 1)
-     * @param {string} [pageSize] Items per page (default: 20, max: 100)
-     * @param {V1ListQrCodesTypeEnum} [type] Filter by QR code type
-     * @param {string} [isActive] Filter by active status
-     * @param {V1ListQrCodesSortEnum} [sort] Sort field
-     * @param {string} [search] Search in data field
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1ListQrCodes: async (
-      page?: string,
-      pageSize?: string,
-      type?: V1ListQrCodesTypeEnum,
-      isActive?: string,
-      sort?: V1ListQrCodesSortEnum,
-      search?: string,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-list-qr-codes`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * List QR Codes - Get paginated list of user\'s QR codes
+   * @param {string} [page] Page number (default: 1)
+   * @param {string} [pageSize] Items per page (default: 20, max: 100)
+   * @param {V1ListQrCodesTypeEnum} [type] Filter by QR code type
+   * @param {string} [isActive] Filter by active status
+   * @param {V1ListQrCodesSortEnum} [sort] Sort field
+   * @param {string} [search] Search in data field
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1ListQrCodes: async (
+    page?: string,
+    pageSize?: string,
+    type?: V1ListQrCodesTypeEnum,
+    isActive?: string,
+    sort?: V1ListQrCodesSortEnum,
+    search?: string,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/v1-list-qr-codes`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page;
-      }
+    if (page !== undefined) {
+      localVarQueryParameter.page = page;
+    }
 
-      if (pageSize !== undefined) {
-        localVarQueryParameter['pageSize'] = pageSize;
-      }
+    if (pageSize !== undefined) {
+      localVarQueryParameter.pageSize = pageSize;
+    }
 
-      if (type !== undefined) {
-        localVarQueryParameter['type'] = type;
-      }
+    if (type !== undefined) {
+      localVarQueryParameter.type = type;
+    }
 
-      if (isActive !== undefined) {
-        localVarQueryParameter['isActive'] = isActive;
-      }
+    if (isActive !== undefined) {
+      localVarQueryParameter.isActive = isActive;
+    }
 
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort;
-      }
+    if (sort !== undefined) {
+      localVarQueryParameter.sort = sort;
+    }
 
-      if (search !== undefined) {
-        localVarQueryParameter['search'] = search;
-      }
+    if (search !== undefined) {
+      localVarQueryParameter.search = search;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Update QR Code - Modify an existing QR code
-     * @param {UpdateQrCodeIn} updateQrCodeIn Update configuration
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1UpdateQrCode: async (
-      updateQrCodeIn: UpdateQrCodeIn,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'updateQrCodeIn' is not null or undefined
-      assertParamExists('v1UpdateQrCode', 'updateQrCodeIn', updateQrCodeIn);
-      const localVarPath = `/v1-update-qr-code`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Update QR Code - Modify an existing QR code
+   * @param {UpdateQrCodeIn} updateQrCodeIn Update configuration
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1UpdateQrCode: async (updateQrCodeIn: UpdateQrCodeIn, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+    // verify required parameter 'updateQrCodeIn' is not null or undefined
+    assertParamExists('v1UpdateQrCode', 'updateQrCodeIn', updateQrCodeIn);
+    const localVarPath = `/v1-update-qr-code`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+    localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-      localVarRequestOptions.data = serializeDataIfNeeded(updateQrCodeIn, localVarRequestOptions, configuration);
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    localVarRequestOptions.data = serializeDataIfNeeded(updateQrCodeIn, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * QRCodeApi - functional programming interface
  */
-export const QRCodeApiFp = function (configuration?: Configuration) {
+export const QRCodeApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = QRCodeApiAxiosParamCreator(configuration);
   return {
     /**
@@ -6650,7 +6599,7 @@ export const QRCodeApiFp = function (configuration?: Configuration) {
 /**
  * QRCodeApi - factory interface
  */
-export const QRCodeApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const QRCodeApiFactory = (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
   const localVarFp = QRCodeApiFp(configuration);
   return {
     /**
@@ -7056,352 +7005,350 @@ export type V1ListQrCodesSortEnum = (typeof V1ListQrCodesSortEnum)[keyof typeof 
 /**
  * ShortURLApi - axios parameter creator
  */
-export const ShortURLApiAxiosParamCreator = function (configuration?: Configuration) {
-  return {
-    /**
-     * Create multiple short URLs in a single request. Supports custom domains based on user settings.
-     * @param {CreateBulkShortUrlsRequest} createBulkShortUrlsRequest
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1CreateBulkShortUrls: async (
-      createBulkShortUrlsRequest: CreateBulkShortUrlsRequest,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'createBulkShortUrlsRequest' is not null or undefined
-      assertParamExists('v1CreateBulkShortUrls', 'createBulkShortUrlsRequest', createBulkShortUrlsRequest);
-      const localVarPath = `/v1-create-bulk-short-urls`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const ShortURLApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   * Create multiple short URLs in a single request. Supports custom domains based on user settings.
+   * @param {CreateBulkShortUrlsRequest} createBulkShortUrlsRequest
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1CreateBulkShortUrls: async (
+    createBulkShortUrlsRequest: CreateBulkShortUrlsRequest,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'createBulkShortUrlsRequest' is not null or undefined
+    assertParamExists('v1CreateBulkShortUrls', 'createBulkShortUrlsRequest', createBulkShortUrlsRequest);
+    const localVarPath = `/v1-create-bulk-short-urls`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+    localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        createBulkShortUrlsRequest,
-        localVarRequestOptions,
-        configuration,
-      );
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    localVarRequestOptions.data = serializeDataIfNeeded(
+      createBulkShortUrlsRequest,
+      localVarRequestOptions,
+      configuration,
+    );
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Creates a shortened URL that redirects to the original URL. Validates the URL and checks against blocked domains.
-     * @param {CreateShortUrlIn} createShortUrlIn Short URL configuration
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1CreateShortUrl: async (
-      createShortUrlIn: CreateShortUrlIn,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'createShortUrlIn' is not null or undefined
-      assertParamExists('v1CreateShortUrl', 'createShortUrlIn', createShortUrlIn);
-      const localVarPath = `/v1-create-short-url`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Creates a shortened URL that redirects to the original URL. Validates the URL and checks against blocked domains.
+   * @param {CreateShortUrlIn} createShortUrlIn Short URL configuration
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1CreateShortUrl: async (
+    createShortUrlIn: CreateShortUrlIn,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'createShortUrlIn' is not null or undefined
+    assertParamExists('v1CreateShortUrl', 'createShortUrlIn', createShortUrlIn);
+    const localVarPath = `/v1-create-short-url`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+    localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-      localVarRequestOptions.data = serializeDataIfNeeded(createShortUrlIn, localVarRequestOptions, configuration);
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    localVarRequestOptions.data = serializeDataIfNeeded(createShortUrlIn, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Deletes a shortened URL. Requires authentication and ownership of the URL.
-     * @param {DeleteShortUrlIn} deleteShortUrlIn Delete request parameters
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1DeleteShortUrl: async (
-      deleteShortUrlIn: DeleteShortUrlIn,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'deleteShortUrlIn' is not null or undefined
-      assertParamExists('v1DeleteShortUrl', 'deleteShortUrlIn', deleteShortUrlIn);
-      const localVarPath = `/v1-delete-short-url`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Deletes a shortened URL. Requires authentication and ownership of the URL.
+   * @param {DeleteShortUrlIn} deleteShortUrlIn Delete request parameters
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1DeleteShortUrl: async (
+    deleteShortUrlIn: DeleteShortUrlIn,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'deleteShortUrlIn' is not null or undefined
+    assertParamExists('v1DeleteShortUrl', 'deleteShortUrlIn', deleteShortUrlIn);
+    const localVarPath = `/v1-delete-short-url`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+    localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-      localVarRequestOptions.data = serializeDataIfNeeded(deleteShortUrlIn, localVarRequestOptions, configuration);
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    localVarRequestOptions.data = serializeDataIfNeeded(deleteShortUrlIn, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Fetches detailed analytics including click data and visitor information for a shortened URL.
-     * @param {string} [sid] Short ID of the URL - eg: abc123
-     * @param {string} [domain] Domain of the short URL - eg: in.mt
-     * @param {string} [id] Database ID of the short URL - optional
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetShortUrlAnalytics: async (
-      sid?: string,
-      domain?: string,
-      id?: string,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-get-short-url-analytics`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Fetches detailed analytics including click data and visitor information for a shortened URL.
+   * @param {string} [sid] Short ID of the URL - eg: abc123
+   * @param {string} [domain] Domain of the short URL - eg: in.mt
+   * @param {string} [id] Database ID of the short URL - optional
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetShortUrlAnalytics: async (
+    sid?: string,
+    domain?: string,
+    id?: string,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/v1-get-short-url-analytics`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (sid !== undefined) {
-        localVarQueryParameter['sid'] = sid;
-      }
+    if (sid !== undefined) {
+      localVarQueryParameter.sid = sid;
+    }
 
-      if (domain !== undefined) {
-        localVarQueryParameter['domain'] = domain;
-      }
+    if (domain !== undefined) {
+      localVarQueryParameter.domain = domain;
+    }
 
-      if (id !== undefined) {
-        localVarQueryParameter['_id'] = id;
-      }
+    if (id !== undefined) {
+      localVarQueryParameter._id = id;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Get Short URL Details - Retrieve details of a shortened URL
-     * @param {string} [sid] Short ID of the URL
-     * @param {V1GetShortUrlDetailsDomainEnum} [domain] Domain used for the short URL
-     * @param {string} [id] Database ID of the short URL record
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1GetShortUrlDetails: async (
-      sid?: string,
-      domain?: V1GetShortUrlDetailsDomainEnum,
-      id?: string,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-get-short-url-details`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Get Short URL Details - Retrieve details of a shortened URL
+   * @param {string} [sid] Short ID of the URL
+   * @param {V1GetShortUrlDetailsDomainEnum} [domain] Domain used for the short URL
+   * @param {string} [id] Database ID of the short URL record
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1GetShortUrlDetails: async (
+    sid?: string,
+    domain?: V1GetShortUrlDetailsDomainEnum,
+    id?: string,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/v1-get-short-url-details`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (sid !== undefined) {
-        localVarQueryParameter['sid'] = sid;
-      }
+    if (sid !== undefined) {
+      localVarQueryParameter.sid = sid;
+    }
 
-      if (domain !== undefined) {
-        localVarQueryParameter['domain'] = domain;
-      }
+    if (domain !== undefined) {
+      localVarQueryParameter.domain = domain;
+    }
 
-      if (id !== undefined) {
-        localVarQueryParameter['_id'] = id;
-      }
+    if (id !== undefined) {
+      localVarQueryParameter._id = id;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * List Short URLs - Retrieve user\'s shortened URLs
-     * @param {string} [batchId] Filter by batch ID (for bulk created items)
-     * @param {Array<string>} [sort] Sort fields (prefix with - for descending) - eg: [\&quot;-createdAt\&quot;, \&quot;clicks\&quot;]
-     * @param {number} [page] Page number for pagination - Default: 1
-     * @param {number} [pageSize] Number of items per page - Default: 200
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1ListShortUrls: async (
-      batchId?: string,
-      sort?: Array<string>,
-      page?: number,
-      pageSize?: number,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/v1-list-short-urls`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * List Short URLs - Retrieve user\'s shortened URLs
+   * @param {string} [batchId] Filter by batch ID (for bulk created items)
+   * @param {Array<string>} [sort] Sort fields (prefix with - for descending) - eg: [\&quot;-createdAt\&quot;, \&quot;clicks\&quot;]
+   * @param {number} [page] Page number for pagination - Default: 1
+   * @param {number} [pageSize] Number of items per page - Default: 200
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1ListShortUrls: async (
+    batchId?: string,
+    sort?: Array<string>,
+    page?: number,
+    pageSize?: number,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    const localVarPath = `/v1-list-short-urls`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      if (batchId !== undefined) {
-        localVarQueryParameter['batchId'] = batchId;
-      }
+    if (batchId !== undefined) {
+      localVarQueryParameter.batchId = batchId;
+    }
 
-      if (sort) {
-        localVarQueryParameter['sort'] = sort;
-      }
+    if (sort) {
+      localVarQueryParameter.sort = sort;
+    }
 
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page;
-      }
+    if (page !== undefined) {
+      localVarQueryParameter.page = page;
+    }
 
-      if (pageSize !== undefined) {
-        localVarQueryParameter['pageSize'] = pageSize;
-      }
+    if (pageSize !== undefined) {
+      localVarQueryParameter.pageSize = pageSize;
+    }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Updates the short ID or domain of an existing shortened URL. Requires authentication and ownership.
-     * @param {UpdateShortUrlIn} updateShortUrlIn Update request parameters
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1UpdateShortUrl: async (
-      updateShortUrlIn: UpdateShortUrlIn,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'updateShortUrlIn' is not null or undefined
-      assertParamExists('v1UpdateShortUrl', 'updateShortUrlIn', updateShortUrlIn);
-      const localVarPath = `/v1-update-short-url`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+  /**
+   * Updates the short ID or domain of an existing shortened URL. Requires authentication and ownership.
+   * @param {UpdateShortUrlIn} updateShortUrlIn Update request parameters
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1UpdateShortUrl: async (
+    updateShortUrlIn: UpdateShortUrlIn,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'updateShortUrlIn' is not null or undefined
+    assertParamExists('v1UpdateShortUrl', 'updateShortUrlIn', updateShortUrlIn);
+    const localVarPath = `/v1-update-short-url`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+    localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-      localVarRequestOptions.data = serializeDataIfNeeded(updateShortUrlIn, localVarRequestOptions, configuration);
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    localVarRequestOptions.data = serializeDataIfNeeded(updateShortUrlIn, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * ShortURLApi - functional programming interface
  */
-export const ShortURLApiFp = function (configuration?: Configuration) {
+export const ShortURLApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = ShortURLApiAxiosParamCreator(configuration);
   return {
     /**
@@ -7581,7 +7528,7 @@ export const ShortURLApiFp = function (configuration?: Configuration) {
 /**
  * ShortURLApi - factory interface
  */
-export const ShortURLApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const ShortURLApiFactory = (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
   const localVarFp = ShortURLApiFp(configuration);
   return {
     /**
@@ -7913,57 +7860,55 @@ export type V1GetShortUrlDetailsDomainEnum =
 /**
  * URLMetadataApi - axios parameter creator
  */
-export const URLMetadataApiAxiosParamCreator = function (configuration?: Configuration) {
-  return {
-    /**
-     * Scrape URL Data - Extract metadata and Open Graph data from URL
-     * @param {ScrapeUrlDataIn} scrapeUrlDataIn URL and options for scraping
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1CreateScrapeUrlData: async (
-      scrapeUrlDataIn: ScrapeUrlDataIn,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'scrapeUrlDataIn' is not null or undefined
-      assertParamExists('v1CreateScrapeUrlData', 'scrapeUrlDataIn', scrapeUrlDataIn);
-      const localVarPath = `/v1-scrape-url-data`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const URLMetadataApiAxiosParamCreator = (configuration?: Configuration) => ({
+  /**
+   * Scrape URL Data - Extract metadata and Open Graph data from URL
+   * @param {ScrapeUrlDataIn} scrapeUrlDataIn URL and options for scraping
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  v1CreateScrapeUrlData: async (
+    scrapeUrlDataIn: ScrapeUrlDataIn,
+    options: RawAxiosRequestConfig = {},
+  ): Promise<RequestArgs> => {
+    // verify required parameter 'scrapeUrlDataIn' is not null or undefined
+    assertParamExists('v1CreateScrapeUrlData', 'scrapeUrlDataIn', scrapeUrlDataIn);
+    const localVarPath = `/v1-scrape-url-data`;
+    // use dummy base URL string because the URL constructor only accepts absolute URLs.
+    const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+    let baseOptions;
+    if (configuration) {
+      baseOptions = configuration.baseOptions;
+    }
 
-      const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+    const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+    const localVarHeaderParameter = {} as any;
+    const localVarQueryParameter = {} as any;
 
-      // authentication APIKeyQueryParam required
-      await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
+    // authentication APIKeyQueryParam required
+    await setApiKeyToObject(localVarQueryParameter, 'x-api-key', configuration);
 
-      // authentication APIKeyHeader required
-      await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
+    // authentication APIKeyHeader required
+    await setApiKeyToObject(localVarHeaderParameter, 'x-api-key', configuration);
 
-      localVarHeaderParameter['Content-Type'] = 'application/json';
+    localVarHeaderParameter['Content-Type'] = 'application/json';
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-      localVarRequestOptions.data = serializeDataIfNeeded(scrapeUrlDataIn, localVarRequestOptions, configuration);
+    setSearchParams(localVarUrlObj, localVarQueryParameter);
+    const headersFromBaseOptions = baseOptions?.headers ? baseOptions.headers : {};
+    localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+    localVarRequestOptions.data = serializeDataIfNeeded(scrapeUrlDataIn, localVarRequestOptions, configuration);
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
+    return {
+      url: toPathString(localVarUrlObj),
+      options: localVarRequestOptions,
+    };
+  },
+});
 
 /**
  * URLMetadataApi - functional programming interface
  */
-export const URLMetadataApiFp = function (configuration?: Configuration) {
+export const URLMetadataApiFp = (configuration?: Configuration) => {
   const localVarAxiosParamCreator = URLMetadataApiAxiosParamCreator(configuration);
   return {
     /**
@@ -7994,11 +7939,7 @@ export const URLMetadataApiFp = function (configuration?: Configuration) {
 /**
  * URLMetadataApi - factory interface
  */
-export const URLMetadataApiFactory = function (
-  configuration?: Configuration,
-  basePath?: string,
-  axios?: AxiosInstance,
-) {
+export const URLMetadataApiFactory = (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
   const localVarFp = URLMetadataApiFp(configuration);
   return {
     /**

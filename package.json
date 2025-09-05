@@ -73,10 +73,11 @@
   ],
   "scripts": {
     "build": "rm -rf dist && tsc -p .",
-    "lint": "eslint src __tests__",
-    "lint-fix": "yarn lint -- --fix",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
     "prepare": "husky",
-    "prettier": "prettier --write \"src/**/*.{ts,json}\" \"__tests__/**/*.{ts,json}\"",
     "test": "jest",
     "test-ci": "jest --ci",
     "test:watch": "jest --watch",
@@ -85,21 +86,15 @@
     "release": "semantic-release",
     "release:dry": "semantic-release --dry-run"
   },
-  "lint-staged": {
-    "src/**/*.{ts,json}": "prettier --write",
-    "__tests__/**/*.{ts,json}": "prettier --write"
-  },
   "dependencies": {
     "axios": "1.11.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.2.3",
     "@types/jest": "^30.0.0",
     "husky": "9.1.7",
     "jest": "^30.1.3",
-    "lint-staged": "16.1.6",
     "ms": "^2.1.3",
-    "prettier": "3.6.2",
-    "pretty-quick": "4.2.2",
     "ts-jest": "^29.4.1",
     "ts-node": "10.9.2",
     "typescript": "5.9.2"
