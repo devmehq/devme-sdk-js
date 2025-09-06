@@ -616,12 +616,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) f
 ## 🆘 Support
 
 - 📧 Email: [support@dev.me](mailto:support@dev.me)
-- 📚 Documentation: [dev.me/docs](https://dev.me/docs)
-- 🐦 Twitter: [@devmedotme](https://twitter.com/devmedotme)
+- 📚 Documentation: [dev.me/documentation](https://dev.me/documentation)
+- 🐦 Twitter: [@devhq](https://x.com/devhq)
 
 ## 🔗 Links
 
-- [API Documentation](https://dev.me/docs)
+- [API Documentation](https://dev.me/documentation)
 - [Pricing](https://dev.me/pricing)
 - [Blog](https://dev.me/blog)
 - [Changelog](CHANGELOG.md)
