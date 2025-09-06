@@ -28,39 +28,55 @@
   },
   "license": "MIT",
   "author": "DEV.ME <support@dev.me> (https://dev.me)",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "typings": "./dist/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/cjs/index.d.ts",
+  "typings": "./dist/cjs/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "types": {
+        "import": "./dist/esm/index.d.ts",
+        "require": "./dist/cjs/index.d.ts"
+      },
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/cjs/index.js"
     },
     "./api": {
-      "types": "./dist/api.d.ts",
-      "require": "./dist/api.js",
-      "import": "./dist/api.js",
-      "default": "./dist/api.js"
+      "types": {
+        "import": "./dist/esm/api.d.ts",
+        "require": "./dist/cjs/api.d.ts"
+      },
+      "import": "./dist/esm/api.js",
+      "require": "./dist/cjs/api.js",
+      "default": "./dist/cjs/api.js"
     },
     "./configuration": {
-      "types": "./dist/configuration.d.ts",
-      "require": "./dist/configuration.js",
-      "import": "./dist/configuration.js",
-      "default": "./dist/configuration.js"
+      "types": {
+        "import": "./dist/esm/configuration.d.ts",
+        "require": "./dist/cjs/configuration.d.ts"
+      },
+      "import": "./dist/esm/configuration.js",
+      "require": "./dist/cjs/configuration.js",
+      "default": "./dist/cjs/configuration.js"
     },
     "./base": {
-      "types": "./dist/base.d.ts",
-      "require": "./dist/base.js",
-      "import": "./dist/base.js",
-      "default": "./dist/base.js"
+      "types": {
+        "import": "./dist/esm/base.d.ts",
+        "require": "./dist/cjs/base.d.ts"
+      },
+      "import": "./dist/esm/base.js",
+      "require": "./dist/cjs/base.js",
+      "default": "./dist/cjs/base.js"
     },
     "./common": {
-      "types": "./dist/common.d.ts",
-      "require": "./dist/common.js",
-      "import": "./dist/common.js",
-      "default": "./dist/common.js"
+      "types": {
+        "import": "./dist/esm/common.d.ts",
+        "require": "./dist/cjs/common.d.ts"
+      },
+      "import": "./dist/esm/common.js",
+      "require": "./dist/cjs/common.js",
+      "default": "./dist/cjs/common.js"
     },
     "./package.json": "./package.json"
   },
@@ -72,7 +88,11 @@
     "package.json"
   ],
   "scripts": {
-    "build": "rm -rf dist && tsc -p .",
+    "build": "rm -rf dist && yarn build:cjs && yarn build:esm && yarn build:fix-esm && yarn build:package-json",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:fix-esm": "node scripts/fix-esm-imports.js",
+    "build:package-json": "echo '{\"type\": \"module\"}' > dist/esm/package.json && echo '{\"type\": \"commonjs\"}' > dist/cjs/package.json",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
