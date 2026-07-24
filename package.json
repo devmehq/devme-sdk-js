@@ -107,7 +107,7 @@
     "release:dry": "semantic-release --dry-run"
   },
   "dependencies": {
-    "axios": "1.13.2"
+    "axios": "1.18.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.3",
